@@ -1,0 +1,7 @@
+# 自检截图过程产物（非交付）
+_shots/
+
+# 系统文件
+Thumbs.db
+.DS_Store
+*.bak

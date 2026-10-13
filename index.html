@@ -1,0 +1,2179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>软考中级 · 软件设计师考点总结</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231e3a5f'/%3E%3Ctext x='32' y='45' font-size='36' font-family='sans-serif' font-weight='bold' text-anchor='middle' fill='%23ffffff'%3E%E8%BD%AF%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<style>
+:root{
+  --navy:#1e3a5f;
+  --navy-deep:#14294a;
+  --navy-soft:#2c4f7a;
+  --amber:#b8652c;
+  --amber-soft:#c9834f;
+  --paper:#f7f4ed;
+  --card:#ffffff;
+  --ink:#262c34;
+  --muted:#6a717b;
+  --line:#e2dccf;
+  --line-soft:#ece7db;
+  --tag-bg:#eef2f7;
+  --green:#3d6b4f;
+  --red:#a8443a;
+  --radius:6px;
+  --serif:'Noto Serif SC',Georgia,'Songti SC',serif;
+  --sans:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--sans);
+  color:var(--ink);
+  background:var(--paper);
+  line-height:1.75;
+  font-size:15.5px;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:#d9c3a8;color:#1a1a1a;}
+
+/* ===== 顶部导航 ===== */
+.topbar{
+  position:sticky;top:0;z-index:100;
+  background:rgba(20,41,74,.96);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.topbar-inner{
+  max-width:1180px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 28px;height:58px;
+}
+.brand{display:flex;align-items:center;gap:11px;color:#f3ede1;text-decoration:none;}
+.brand-mark{
+  width:30px;height:30px;flex:none;
+  background:var(--amber);border-radius:4px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-weight:700;color:#fff;font-size:16px;
+}
+.brand-text{font-family:var(--serif);font-weight:600;font-size:16px;letter-spacing:.5px;}
+.brand-text small{display:block;font-family:var(--sans);font-weight:400;font-size:10.5px;opacity:.65;letter-spacing:1.5px;margin-top:-2px;}
+.nav-links{display:flex;gap:4px;}
+.nav-links a{
+  color:#c9d3e0;text-decoration:none;font-size:14px;
+  padding:7px 14px;border-radius:4px;transition:.2s;
+}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,.1);}
+.nav-toggle{display:none;background:none;border:none;color:#fff;cursor:pointer;width:44px;height:44px;align-items:center;justify-content:center;border-radius:5px;}
+.nav-toggle svg{display:block;}
+
+/* ===== Hero ===== */
+.hero{
+  background:linear-gradient(160deg,var(--navy-deep) 0%,var(--navy) 58%,#24456b 100%);
+  color:#f1ebdf;
+  padding:74px 28px 66px;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:"";position:absolute;right:-80px;top:-80px;
+  width:380px;height:380px;border:1px solid rgba(255,255,255,.07);border-radius:50%;
+}
+.hero::after{
+  content:"";position:absolute;right:10px;top:10px;
+  width:200px;height:200px;border:1px solid rgba(255,255,255,.05);border-radius:50%;
+}
+.hero-inner{max-width:1180px;margin:0 auto;position:relative;z-index:2;}
+.hero-kicker{
+  font-size:13px;letter-spacing:4px;color:var(--amber-soft);
+  font-weight:500;margin-bottom:18px;text-transform:uppercase;
+}
+.hero h1{
+  font-family:var(--serif);font-weight:700;
+  font-size:44px;line-height:1.25;letter-spacing:1px;margin-bottom:18px;
+}
+.hero h1 .accent{color:var(--amber-soft);}
+.hero-sub{font-size:16.5px;color:#c2ccda;max-width:680px;line-height:1.9;margin-bottom:38px;}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.12);border-radius:8px;overflow:hidden;max-width:820px;}
+.hero-stat{background:rgba(20,41,74,.55);padding:20px 22px;}
+.hero-stat .num{font-family:var(--serif);font-size:27px;font-weight:700;color:#fff;line-height:1.2;}
+.hero-stat .num small{font-size:14px;font-weight:400;color:#aebac9;margin-left:2px;}
+.hero-stat .lbl{font-size:12.5px;color:#a8b4c4;margin-top:5px;letter-spacing:.5px;}
+
+/* ===== 通用区块 ===== */
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+section.block{padding:62px 0 10px;}
+.sec-head{margin-bottom:34px;}
+.sec-no{
+  font-family:var(--serif);font-size:14px;color:var(--amber);font-weight:600;
+  letter-spacing:3px;display:block;margin-bottom:9px;
+}
+.sec-head h2{
+  font-family:var(--serif);font-size:30px;font-weight:700;color:var(--navy-deep);
+  letter-spacing:.5px;display:flex;align-items:baseline;gap:14px;
+}
+.sec-head h2::after{content:"";flex:1;height:1px;background:var(--line);margin-left:8px;}
+.sec-head p{color:var(--muted);font-size:14.5px;margin-top:10px;max-width:760px;}
+
+/* ===== 考试结构表 ===== */
+.struct-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.struct-card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden;display:flex;flex-direction:column;
+}
+.struct-card-head{
+  padding:20px 24px;border-bottom:1px solid var(--line-soft);
+  display:flex;align-items:center;gap:13px;
+}
+.struct-badge{
+  width:40px;height:40px;flex:none;border-radius:5px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-weight:700;font-size:17px;color:#fff;
+}
+.struct-badge.am{background:var(--navy);}
+.struct-badge.pm{background:var(--amber);}
+.struct-card-head h3{font-family:var(--serif);font-size:18px;color:var(--navy-deep);}
+.struct-card-head .sub{font-size:12.5px;color:var(--muted);margin-top:1px;}
+.struct-card-body{padding:20px 24px;flex:1;}
+.struct-row{display:flex;justify-content:space-between;gap:16px;padding:8px 0;font-size:14px;border-bottom:1px dashed var(--line-soft);}
+.struct-row:last-child{border-bottom:none;}
+.struct-row .k{color:var(--muted);flex:none;}
+.struct-row .v{color:var(--ink);text-align:right;font-weight:500;}
+.struct-foot{padding:13px 24px;background:#f4efe4;font-size:13px;color:var(--muted);border-top:1px solid var(--line-soft);}
+.struct-foot b{color:var(--amber);}
+
+/* ===== 上午：分值分布表 ===== */
+.weight-table{
+  width:100%;border-collapse:collapse;background:var(--card);
+  border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+  font-size:14px;margin-bottom:8px;
+}
+.weight-table table-layout:fixed;
+.weight-table th{
+  background:var(--navy);color:#eef2f7;font-weight:500;
+  padding:11px 16px;text-align:left;font-size:13.5px;
+}
+.weight-table td{padding:10px 16px;border-top:1px solid var(--line-soft);}
+.weight-table tr:nth-child(even) td{background:#fbf9f4;}
+.weight-table .bar-cell{width:34%;}
+.bar{height:9px;background:#e9e3d6;border-radius:6px;overflow:hidden;}
+.bar > span{display:block;height:100%;background:linear-gradient(90deg,var(--navy-soft),var(--navy));border-radius:6px;}
+.bar > span.hot{background:linear-gradient(90deg,var(--amber-soft),var(--amber));}
+.pct{font-family:var(--serif);font-weight:600;color:var(--navy-deep);}
+.pct.hot{color:var(--amber);}
+.stars{color:var(--amber);letter-spacing:2px;font-size:13px;white-space:nowrap;}
+.stars .e{color:#d8d1c2;}
+.weight-note{font-size:13px;color:var(--muted);margin:14px 2px 0;}
+
+/* ===== 上午：模块卡片 ===== */
+.topic-card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  margin-bottom:22px;overflow:hidden;
+}
+.topic-head{
+  padding:18px 24px;border-bottom:1px solid var(--line-soft);
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  background:linear-gradient(90deg,#f6f2e9,#fdfbf7);
+}
+.topic-no{
+  font-family:var(--serif);font-size:13px;font-weight:700;color:#fff;
+  background:var(--navy);width:34px;height:34px;border-radius:5px;
+  display:flex;align-items:center;justify-content:center;flex:none;
+}
+.topic-card.key .topic-no{background:var(--amber);}
+.topic-head h3{font-family:var(--serif);font-size:19px;color:var(--navy-deep);font-weight:700;}
+.topic-meta{display:flex;align-items:center;gap:12px;margin-left:auto;flex-wrap:wrap;}
+.meta-pill{
+  font-size:12.5px;padding:3px 11px;border-radius:20px;
+  background:var(--tag-bg);color:var(--navy-soft);font-weight:500;white-space:nowrap;
+}
+.meta-pill.hot{background:#f3e2d2;color:var(--amber);}
+.topic-body{padding:20px 24px;}
+.kp-group{margin-bottom:16px;}
+.kp-group:last-child{margin-bottom:0;}
+.kp-group > h4{
+  font-size:13px;color:var(--amber);font-weight:700;letter-spacing:1px;
+  margin-bottom:9px;display:flex;align-items:center;gap:8px;
+}
+.kp-group > h4::before{content:"";width:4px;height:13px;background:var(--amber);border-radius:2px;}
+.kp-list{display:grid;grid-template-columns:repeat(2,1fr);gap:7px 26px;}
+.kp{
+  font-size:14px;color:var(--ink);padding-left:16px;position:relative;line-height:1.6;
+}
+.kp::before{
+  content:"";position:absolute;left:2px;top:9px;width:5px;height:5px;
+  background:#b9b09e;border-radius:50%;
+}
+.kp.hot{font-weight:500;color:var(--navy-deep);}
+.kp.hot::before{background:var(--amber);}
+.kp .tip{color:var(--muted);font-size:12.5px;}
+.kp-formula{
+  margin-top:6px;background:#f4f1e8;border-left:3px solid var(--navy-soft);
+  padding:9px 14px;font-size:13px;color:var(--muted);border-radius:0 4px 4px 0;
+  grid-column:1/-1;
+}
+.kp-formula b{color:var(--navy-deep);}
+
+/* ===== 下午：大题卡片 ===== */
+.pm-card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  margin-bottom:24px;overflow:hidden;
+}
+.pm-head{
+  padding:20px 24px;color:#fff;
+  background:linear-gradient(120deg,var(--navy-deep),var(--navy));
+  display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+}
+.pm-card.choice .pm-head{background:linear-gradient(120deg,#7a4520,var(--amber));}
+.pm-qno{
+  font-family:var(--serif);font-size:15px;font-weight:700;
+  border:1.5px solid rgba(255,255,255,.5);border-radius:5px;
+  padding:6px 12px;white-space:nowrap;
+}
+.pm-head h3{font-family:var(--serif);font-size:20px;font-weight:700;}
+.pm-head .score{margin-left:auto;font-size:13.5px;background:rgba(255,255,255,.16);padding:5px 13px;border-radius:20px;white-space:nowrap;}
+.pm-body{padding:22px 24px;}
+.pm-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;}
+.pm-block h4{
+  font-size:13.5px;font-weight:700;color:var(--navy);letter-spacing:.5px;
+  margin-bottom:11px;padding-bottom:7px;border-bottom:2px solid var(--line);
+}
+.pm-block.skill h4{color:var(--amber);border-bottom-color:#e8cdb4;}
+.pm-block ul{list-style:none;}
+.pm-block li{
+  font-size:13.8px;padding:5px 0 5px 18px;position:relative;line-height:1.65;color:var(--ink);
+}
+.pm-block li::before{content:"—";position:absolute;left:0;color:var(--navy-soft);font-size:12px;top:5px;}
+.pm-block.skill li::before{content:"✓";color:var(--amber);}
+.pm-block li b{color:var(--navy-deep);}
+.pm-callout{
+  margin-top:18px;background:#f6f1e6;border:1px solid #e6dcc6;border-radius:5px;
+  padding:13px 17px;font-size:13.3px;color:#5c5344;line-height:1.7;
+}
+.pm-callout b{color:var(--amber);}
+
+/* ===== 设计模式表 ===== */
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:scroll;margin-top:6px;border-radius:4px;}
+.dp-table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:0;table-layout:fixed;min-width:700px;}
+.dp-table th{background:var(--navy);color:#fff;padding:9px 14px;text-align:left;font-weight:500;}
+.dp-table td{padding:9px 14px;border:1px solid var(--line-soft);vertical-align:top;line-height:1.6;}
+.dp-table tr:nth-child(even) td{background:#fbf9f4;}
+.dp-table .cat{font-family:var(--serif);font-weight:700;color:var(--navy-deep);white-space:nowrap;}
+.dp-table .freq{color:var(--amber);font-weight:600;white-space:nowrap;}
+
+/* ===== 备考策略 ===== */
+.strat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:30px;}
+.strat-card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:26px 24px;border-top:3px solid var(--navy);
+}
+.strat-card:nth-child(2){border-top-color:var(--amber);}
+.strat-card:nth-child(3){border-top-color:var(--green);}
+.strat-card .ph{
+  font-family:var(--serif);font-size:13px;letter-spacing:2px;color:var(--muted);margin-bottom:8px;
+}
+.strat-card h3{font-family:var(--serif);font-size:19px;color:var(--navy-deep);margin-bottom:14px;}
+.strat-card ul{list-style:none;}
+.strat-card li{font-size:13.8px;padding:6px 0 6px 19px;position:relative;line-height:1.65;border-bottom:1px dashed var(--line-soft);}
+.strat-card li:last-child{border-bottom:none;}
+.strat-card li::before{
+  content:"";position:absolute;left:2px;top:13px;width:7px;height:7px;
+  border:1.5px solid var(--navy-soft);border-radius:50%;
+}
+.strat-card:nth-child(2) li::before{border-color:var(--amber);}
+.strat-card:nth-child(3) li::before{border-color:var(--green);}
+.strat-card li b{color:var(--navy-deep);}
+
+.core-box{
+  background:linear-gradient(120deg,var(--navy-deep),var(--navy));
+  border-radius:var(--radius);padding:30px 32px;color:#eef2f7;
+}
+.core-box h3{font-family:var(--serif);font-size:20px;margin-bottom:8px;color:#fff;}
+.core-box > p{font-size:14px;color:#c2ccda;margin-bottom:20px;}
+.core-tags{display:flex;flex-wrap:wrap;gap:11px;}
+.core-tag{
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);
+  padding:8px 16px;border-radius:20px;font-size:13.5px;
+}
+.core-tag b{color:var(--amber-soft);font-family:var(--serif);}
+
+/* ===== 考点真题速查导航 ===== */
+.jump-map{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;margin-bottom:28px;
+}
+.jump-map-head{display:flex;align-items:baseline;gap:10px;margin-bottom:15px;flex-wrap:wrap;}
+.jump-map-head h3{font-family:var(--serif);font-size:17px;color:var(--navy-deep);}
+.jump-map-head p{font-size:13px;color:var(--muted);}
+.jump-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;}
+.jump-grid a{
+  display:flex;align-items:center;gap:9px;text-decoration:none;
+  border:1px solid var(--line);border-radius:5px;padding:9px 12px;
+  background:#fbf9f4;transition:.18s;
+}
+.jump-grid a:hover{border-color:var(--amber);background:#f7efe4;transform:translateY(-1px);}
+.jump-grid a .jn{
+  font-family:var(--serif);font-size:13px;font-weight:700;color:#fff;
+  background:var(--navy);width:24px;height:24px;border-radius:4px;flex:none;
+  display:flex;align-items:center;justify-content:center;
+}
+.jump-grid a.key .jn{background:var(--amber);}
+.jump-grid a .jt{font-size:13px;color:var(--navy-deep);font-weight:500;line-height:1.3;}
+.jump-grid a .jm{margin-left:auto;font-size:11px;color:var(--amber);flex:none;}
+.jump-grid.pm{grid-template-columns:repeat(3,1fr);margin-top:10px;}
+.jump-grid.pm .jn{background:var(--amber);}
+
+/* ===== 考点精讲折叠 ===== */
+.lecture{border:1px solid var(--line);border-radius:var(--radius);margin-top:18px;background:#fdfbf6;}
+.lecture > summary{
+  cursor:pointer;padding:13px 18px;font-weight:600;color:var(--navy);
+  font-size:14px;list-style:none;display:flex;align-items:center;gap:9px;user-select:none;
+}
+.lecture > summary::-webkit-details-marker{display:none;}
+.lecture > summary::before{content:"▸";color:var(--amber);font-size:13px;transition:transform .2s;display:inline-block;}
+.lecture[open] > summary::before{transform:rotate(90deg);}
+.lecture > summary:hover{background:#f7f1e6;}
+.lecture-body{padding:2px 18px 18px;font-size:14px;line-height:1.85;}
+.lecture-body h5{font-size:13.5px;color:var(--amber);font-weight:700;margin:14px 0 7px;letter-spacing:.5px;}
+.lecture-body h5:first-child{margin-top:4px;}
+.lecture-body p{margin-bottom:8px;color:var(--ink);}
+.lecture-body ul{margin:0 0 8px 0;padding-left:4px;list-style:none;}
+.lecture-body li{padding:3px 0 3px 16px;position:relative;line-height:1.75;}
+.lecture-body li::before{content:"·";position:absolute;left:4px;color:var(--navy-soft);font-weight:700;}
+.lecture-body li b{color:var(--navy-deep);}
+.lecture-body .mini-tbl{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0;table-layout:fixed;}
+.lecture-body .mini-tbl.m3 th:nth-child(1){width:20%;}
+.lecture-body .mini-tbl.m3 th:nth-child(2){width:28%;}
+.lecture-body .mini-tbl.m3 th:nth-child(3){width:52%;}
+.lecture-body .mini-tbl.m2 th:nth-child(1){width:30%;}
+.lecture-body .mini-tbl.m2 th:nth-child(2){width:70%;}
+.lecture-body .mini-tbl th{background:var(--navy);color:#fff;padding:7px 10px;text-align:left;font-weight:500;}
+.lecture-body .mini-tbl td{border:1px solid var(--line-soft);padding:6px 10px;}
+.lecture-body .mini-tbl tr:nth-child(even) td{background:#fbf9f4;}
+.lecture-body .code,.case-demo .code{
+  background:#f0ede4;border-radius:4px;padding:10px 14px;font-family:Consolas,'Courier New',monospace;
+  font-size:13px;white-space:pre-wrap;line-height:1.7;margin:8px 0;color:#3a3326;
+  overflow-x:auto;
+}
+.lecture-body .note{background:#f4f1e8;border-left:3px solid var(--navy-soft);padding:9px 14px;border-radius:0 4px 4px 0;margin:9px 0;font-size:13.3px;color:#565040;}
+
+/* ===== 真题精练区 ===== */
+.quiz-zone{margin-top:18px;border-top:2px dashed var(--line);padding-top:16px;}
+.quiz-zone-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;flex-wrap:wrap;}
+.qz-title{font-family:var(--serif);font-size:16px;font-weight:700;color:var(--navy-deep);display:flex;align-items:center;gap:9px;}
+.qz-title::before{
+  content:"真题";background:var(--amber);color:#fff;font-family:var(--sans);
+  font-size:11px;font-weight:500;letter-spacing:1px;padding:2px 7px;border-radius:3px;
+}
+.btn-online{
+  display:inline-flex;align-items:center;gap:5px;text-decoration:none;
+  font-size:12.5px;color:var(--navy);border:1px solid var(--navy-soft);
+  padding:5px 12px;border-radius:20px;transition:.18s;white-space:nowrap;
+}
+.btn-online:hover{background:var(--navy);color:#fff;}
+.quiz{
+  background:#fbf9f4;border:1px solid var(--line-soft);border-left:3px solid var(--amber);
+  border-radius:5px;padding:14px 18px;margin-bottom:12px;
+}
+.q-stem{font-size:14px;font-weight:500;color:var(--ink);line-height:1.75;margin-bottom:10px;}
+.q-stem .qno{
+  font-family:var(--serif);background:var(--navy);color:#fff;font-size:12px;
+  padding:1px 8px;border-radius:3px;margin-right:8px;font-weight:600;
+}
+.q-stem .qtag{font-size:11.5px;color:var(--amber);border:1px solid #e0c3a3;border-radius:3px;padding:1px 7px;margin-left:8px;font-weight:400;}
+.q-opts{display:grid;gap:4px;font-size:13.5px;color:#474f59;}
+.q-opts .opt{padding:1px 0;}
+.q-opts .opt b{color:var(--navy);margin-right:6px;}
+.q-ans{margin-top:9px;}
+.q-ans > summary{
+  cursor:pointer;font-size:13px;font-weight:500;color:var(--navy-soft);
+  list-style:none;user-select:none;display:inline-flex;align-items:center;gap:6px;
+}
+.q-ans > summary::-webkit-details-marker{display:none;}
+.q-ans > summary::before{content:"▸";font-size:11px;transition:transform .2s;display:inline-block;}
+.q-ans[open] > summary::before{transform:rotate(90deg);}
+.q-ans-body{
+  margin-top:8px;padding:10px 14px;background:#eef4ef;border-radius:4px;
+  border-left:3px solid var(--green);font-size:13.3px;line-height:1.8;color:#33433a;
+}
+.q-ans-body .ans{color:var(--green);font-weight:700;}
+.q-ans-body .key{color:var(--amber);font-weight:700;}
+
+/* 案例题示范 */
+.case-demo{
+  background:#fbf9f4;border:1px solid var(--line-soft);border-radius:5px;
+  padding:15px 18px;margin-top:14px;
+}
+.case-demo h5{font-family:var(--serif);font-size:15px;color:var(--navy-deep);margin-bottom:10px;}
+.case-demo .cd-step{margin-bottom:10px;font-size:13.8px;line-height:1.8;}
+.case-demo .cd-step .sno{
+  display:inline-block;background:var(--amber);color:#fff;font-size:12px;
+  width:20px;height:20px;border-radius:50%;text-align:center;line-height:20px;margin-right:7px;
+}
+.case-demo .cd-fill{background:#f0ede4;border-radius:4px;padding:10px 14px;font-size:13px;margin:8px 0;line-height:1.8;}
+.case-demo .cd-fill b{color:var(--amber);}
+
+/* ===== 在线题库区 ===== */
+.bank-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:8px;}
+.bank-card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px 22px;text-decoration:none;display:block;transition:.2s;border-top:3px solid var(--navy);
+}
+.bank-card:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(20,41,74,.09);border-color:var(--navy-soft);}
+.bank-card .bk-name{font-family:var(--serif);font-size:17px;font-weight:700;color:var(--navy-deep);margin-bottom:7px;}
+.bank-card .bk-desc{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:12px;}
+.bank-card .bk-go{font-size:13px;color:var(--amber);font-weight:500;}
+.bank-card .bk-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
+.bank-card .bk-tags span{font-size:11.5px;background:var(--tag-bg);color:var(--navy-soft);padding:2px 9px;border-radius:12px;}
+.bank-grid.single{grid-template-columns:1fr;}
+.bank-card.featured{border-top-color:var(--amber);border-left:3px solid var(--amber);display:flex;flex-direction:column;align-items:flex-start;}
+.bank-card.featured .bk-main{flex:1;}
+.bank-card.featured .bk-go{margin-top:4px;background:var(--amber);color:#fff;padding:10px 22px;border-radius:6px;font-size:14px;white-space:nowrap;}
+.bank-card.featured .bk-go:hover{background:#9a5324;}
+@media(min-width:901px){
+  .bank-card.featured{flex-direction:row;align-items:center;gap:34px;}
+  .bank-card.featured .bk-go{margin-top:0;flex:none;}
+}
+
+/* ===== 页脚 ===== */
+.site-footer{
+  margin-top:70px;background:var(--navy-deep);color:#a8b4c4;
+  padding:38px 0;border-top:3px solid var(--amber);
+}
+.footer-inner{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;}
+.footer-brand{font-family:var(--serif);font-size:17px;color:#eef2f7;margin-bottom:9px;font-weight:600;}
+.site-footer p{font-size:13px;max-width:520px;line-height:1.7;}
+.footer-links{display:flex;flex-direction:column;gap:8px;text-align:right;}
+.footer-links a{color:#a8b4c4;text-decoration:none;font-size:13.5px;transition:.2s;padding:8px 0;}
+.footer-links a:hover{color:#fff;}
+
+/* ===== 响应式 ===== */
+@media(max-width:900px){
+  .hero h1{font-size:33px;}
+  .hero-stats{grid-template-columns:repeat(2,1fr);}
+  .struct-grid,.pm-grid{grid-template-columns:1fr;}
+  .kp-list{grid-template-columns:1fr;}
+  .strat-grid{grid-template-columns:1fr;}
+  .jump-grid{grid-template-columns:repeat(2,1fr);}
+  .jump-grid.pm{grid-template-columns:1fr;}
+  .bank-grid{grid-template-columns:1fr;}
+  .nav-links{
+    display:none;position:absolute;top:58px;left:0;right:0;
+    background:var(--navy-deep);flex-direction:column;padding:10px;gap:2px;
+  }
+  .nav-links.open{display:flex;}
+  .nav-links a{padding:12px 16px;}
+  .nav-toggle{display:flex;}
+  .sec-head h2{font-size:24px;}
+}
+@media(max-width:560px){
+  .hero{padding:52px 22px 46px;}
+  .hero h1{font-size:27px;}
+  .wrap{padding:0 18px;}
+  .topic-head,.pm-head{padding:15px 18px;}
+  .topic-body,.pm-body{padding:17px 18px;}
+  .weight-table{font-size:12.5px;}
+  .weight-table th,.weight-table td{padding:8px 9px;}
+  .footer-links{text-align:left;}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== 导航 ===== -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#top">
+      <span class="brand-mark">软</span>
+      <span class="brand-text">软件设计师<small>SOFTWARE DESIGNER</small></span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#structure">考试结构</a>
+      <a href="#morning">上午·综合知识</a>
+      <a href="#afternoon">下午·案例分析</a>
+      <a href="#quizmap">真题精练</a>
+      <a href="#strategy">备考策略</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="菜单">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<div class="hero" id="top">
+  <div class="hero-inner">
+    <div class="hero-kicker">全国计算机技术与软件专业技术资格（水平）考试 · 中级</div>
+    <h1>软件设计师<span class="accent">考点全景总结</span></h1>
+    <p class="hero-sub">依据官方考试说明与历年真题梳理，覆盖上午「计算机与软件工程知识」75 道选择题与下午「软件设计」案例分析题的全部知识模块，标注分值占比与高频程度，供系统复习与考前冲刺使用。</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">2<small>科</small></div><div class="lbl">连考科目</div></div>
+      <div class="hero-stat"><div class="num">75<small>分/科</small></div><div class="lbl">满分</div></div>
+      <div class="hero-stat"><div class="num">45<small>分</small></div><div class="lbl">合格标准</div></div>
+      <div class="hero-stat"><div class="num">150<small>分钟/科</small></div><div class="lbl">作答时长</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 考试结构 ===== -->
+<section class="block" id="structure">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-no">PART 01</span>
+      <h2>考试结构与合格标准</h2>
+      <p>软件设计师为软考中级资格，采用计算机化考试（机考），两科连考、一次考完。两科成绩须同时达到 45 分及以上方为合格，单科成绩不保留。</p>
+    </div>
+    <div class="struct-grid">
+      <div class="struct-card">
+        <div class="struct-card-head">
+          <div class="struct-badge am">上</div>
+          <div><h3>计算机与软件工程知识</h3><div class="sub">基础知识 · 选择题 · 考查知识广度</div></div>
+        </div>
+        <div class="struct-card-body">
+          <div class="struct-row"><span class="k">题型</span><span class="v">75 道单项选择题（四选一）</span></div>
+          <div class="struct-row"><span class="k">分值</span><span class="v">每题 1 分，共 75 分</span></div>
+          <div class="struct-row"><span class="k">时长</span><span class="v">150 分钟</span></div>
+          <div class="struct-row"><span class="k">内容</span><span class="v">硬件、OS、数据结构、网络、数据库、软件工程、面向对象、设计模式、英语等</span></div>
+        </div>
+        <div class="struct-foot">特点：范围广、深度适中，<b>抓住高频模块 + 真题训练</b>是关键。</div>
+      </div>
+      <div class="struct-card">
+        <div class="struct-card-head">
+          <div class="struct-badge pm">下</div>
+          <div><h3>软件设计（应用技术）</h3><div class="sub">案例分析 · 问答题 · 考查实战设计</div></div>
+        </div>
+        <div class="struct-card-body">
+          <div class="struct-row"><span class="k">题型</span><span class="v">6 道大题，前 4 题必答，第 5/6 题二选一</span></div>
+          <div class="struct-row"><span class="k">分值</span><span class="v">每题 15 分，共 75 分</span></div>
+          <div class="struct-row"><span class="k">时长</span><span class="v">150 分钟</span></div>
+          <div class="struct-row"><span class="k">内容</span><span class="v">数据流图、数据库设计、UML 建模、算法、Java/C++ 设计模式</span></div>
+        </div>
+        <div class="struct-foot">特点：题型高度固定，<b>专项训练答题套路</b>提分最快。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 上午：综合知识 ===== -->
+<section class="block" id="morning">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-no">PART 02</span>
+      <h2>上午卷 · 综合知识考点</h2>
+      <p>75 道选择题覆盖计算机专业核心课程，重广度。下表为历年分值占比大致分布，橙色为高分值模块；随后按模块逐一梳理考点，<b style="color:var(--amber)">橙点</b>为高频/必考考点。</p>
+    </div>
+
+    <!-- 考点真题速查导航 -->
+    <div class="jump-map" id="quizmap">
+      <div class="jump-map-head">
+        <h3>考点真题速查</h3>
+        <p>点击任一考点，直接跳转到该考点的「考点精讲 + 真题精练」；题区右上角可进入在线题库刷更多真题。</p>
+      </div>
+      <div class="jump-grid">
+        <a href="#zt-01"><span class="jn">01</span><span class="jt">组成与体系结构</span><span class="jm">真题 ↓</span></a>
+        <a href="#zt-02"><span class="jn">02</span><span class="jt">操作系统</span><span class="jm">真题 ↓</span></a>
+        <a href="#zt-03"><span class="jn">03</span><span class="jt">数据库系统</span><span class="jm">真题 ↓</span></a>
+        <a href="#zt-04"><span class="jn">04</span><span class="jt">计算机网络</span><span class="jm">真题 ↓</span></a>
+        <a class="key" href="#zt-05"><span class="jn">05</span><span class="jt">数据结构与算法</span><span class="jm">真题 ↓</span></a>
+        <a href="#zt-06"><span class="jn">06</span><span class="jt">语言与编译原理</span><span class="jm">真题 ↓</span></a>
+        <a class="key" href="#zt-07"><span class="jn">07</span><span class="jt">软件工程</span><span class="jm">真题 ↓</span></a>
+        <a class="key" href="#zt-08"><span class="jn">08</span><span class="jt">面向对象与 UML</span><span class="jm">真题 ↓</span></a>
+        <a class="key" href="#zt-09"><span class="jn">09</span><span class="jt">设计模式</span><span class="jm">真题 ↓</span></a>
+        <a href="#zt-10"><span class="jn">10</span><span class="jt">信息安全与法规</span><span class="jm">真题 ↓</span></a>
+        <a href="#zt-11"><span class="jn">11</span><span class="jt">多媒体基础</span><span class="jm">真题 ↓</span></a>
+        <a href="#zt-12"><span class="jn">12</span><span class="jt">专业英语</span><span class="jm">真题 ↓</span></a>
+      </div>
+      <div class="jump-grid pm">
+        <a href="#zt-pm1"><span class="jn">题一</span><span class="jt">数据流图 DFD</span><span class="jm">案例 ↓</span></a>
+        <a href="#zt-pm2"><span class="jn">题二</span><span class="jt">数据库 E-R 设计</span><span class="jm">案例 ↓</span></a>
+        <a href="#zt-pm3"><span class="jn">题三</span><span class="jt">UML 建模</span><span class="jm">案例 ↓</span></a>
+        <a href="#zt-pm4"><span class="jn">题四</span><span class="jt">算法设计</span><span class="jm">案例 ↓</span></a>
+        <a href="#zt-pm5"><span class="jn">题五</span><span class="jt">Java 设计模式</span><span class="jm">案例 ↓</span></a>
+        <a href="#zt-pm6"><span class="jn">题六</span><span class="jt">C++ 设计模式</span><span class="jm">案例 ↓</span></a>
+      </div>
+    </div>
+
+    <table class="weight-table">
+      <colgroup><col style="width:30%"><col style="width:16%"><col style="width:34%"><col style="width:20%"></colgroup>
+      <thead><tr><th>知识模块</th><th>题量 / 占比</th><th>分值权重</th><th>重要程度</th></tr></thead>
+      <tbody>
+        <tr><td>软件工程</td><td class="pct hot">10–12 题 / 15%</td><td class="bar-cell"><div class="bar"><span class="hot" style="width:92%"></span></div></td><td><span class="stars">★★★★★</span></td></tr>
+        <tr><td>数据结构与算法</td><td class="pct hot">5–8 题 / 10%</td><td class="bar-cell"><div class="bar"><span class="hot" style="width:80%"></span></div></td><td><span class="stars">★★★★★</span></td></tr>
+        <tr><td>面向对象 + 设计模式</td><td class="pct hot">8–10 题 / 12%</td><td class="bar-cell"><div class="bar"><span class="hot" style="width:82%"></span></div></td><td><span class="stars">★★★★★</span></td></tr>
+        <tr><td>计算机组成与体系结构</td><td class="pct">5–6 题 / 7%</td><td class="bar-cell"><div class="bar"><span style="width:55%"></span></div></td><td><span class="stars">★★★★<span class="e">★</span></span></td></tr>
+        <tr><td>操作系统</td><td class="pct">5–6 题 / 7%</td><td class="bar-cell"><div class="bar"><span style="width:55%"></span></div></td><td><span class="stars">★★★★<span class="e">★</span></span></td></tr>
+        <tr><td>数据库系统</td><td class="pct">5–6 题 / 7%</td><td class="bar-cell"><div class="bar"><span style="width:55%"></span></div></td><td><span class="stars">★★★★<span class="e">★</span></span></td></tr>
+        <tr><td>计算机网络</td><td class="pct">4–5 题 / 6%</td><td class="bar-cell"><div class="bar"><span style="width:45%"></span></div></td><td><span class="stars">★★★<span class="e">★★</span></span></td></tr>
+        <tr><td>程序语言与编译原理</td><td class="pct">3–4 题 / 5%</td><td class="bar-cell"><div class="bar"><span style="width:38%"></span></div></td><td><span class="stars">★★★<span class="e">★★</span></span></td></tr>
+        <tr><td>信息安全与法律法规</td><td class="pct">3–4 题 / 5%</td><td class="bar-cell"><div class="bar"><span style="width:38%"></span></div></td><td><span class="stars">★★★<span class="e">★★</span></span></td></tr>
+        <tr><td>专业英语</td><td class="pct">5 题 / 7%</td><td class="bar-cell"><div class="bar"><span style="width:42%"></span></div></td><td><span class="stars">★★★<span class="e">★★</span></span></td></tr>
+        <tr><td>多媒体基础</td><td class="pct">2–3 题 / 3%</td><td class="bar-cell"><div class="bar"><span style="width:25%"></span></div></td><td><span class="stars">★★<span class="e">★★★</span></span></td></tr>
+      </tbody>
+    </table>
+    <p class="weight-note">注：数据结构、面向对象、设计模式同时是下午大题的核心考点，实际权重应叠加计算，是全考试的重中之重。</p>
+
+    <!-- 模块1 组成原理 -->
+    <div class="topic-card">
+      <div class="topic-head">
+        <span class="topic-no">01</span>
+        <h3>计算机组成与体系结构</h3>
+        <div class="topic-meta"><span class="meta-pill">5–6 题</span><span class="meta-pill">约 7%</span></div>
+      </div>
+      <div class="topic-body">
+        <div class="kp-group">
+          <h4>数据表示与运算</h4>
+          <div class="kp-list">
+            <div class="kp hot">进制转换、原码 / 反码 / 补码 / 移码（<span class="tip">负数补码 = 反码 +1，补码可直接加减）</span></div>
+            <div class="kp hot">浮点数运算：对阶 → 尾数计算 → 规格化；表示范围</div>
+            <div class="kp hot">校验码：奇偶校验、海明码（纠错位数）、CRC 循环冗余校验</div>
+            <div class="kp">定点数表示范围、溢出判断</div>
+          </div>
+        </div>
+        <div class="kp-group">
+          <h4>CPU 与指令系统</h4>
+          <div class="kp-list">
+            <div class="kp">运算器（ALU、累加器、PSW）与控制器（PC、IR、时序）</div>
+            <div class="kp hot">寻址方式：立即、直接、间接、寄存器、相对、基址、变址</div>
+            <div class="kp hot">CISC 与 RISC 的区别</div>
+            <div class="kp hot">指令流水线：周期、加速比、吞吐率计算</div>
+          </div>
+          <div class="kp-formula">流水线执行时间 = <b>一条指令完整时间 +（指令数 −1）× 流水线周期</b>；流水线周期取各段最长时间。</div>
+        </div>
+        <div class="kp-group">
+          <h4>存储与 I/O 系统</h4>
+          <div class="kp-list">
+            <div class="kp hot">Cache：作用、命中率与平均访问时间、三种映射（直接 / 全相联 / 组相联）</div>
+            <div class="kp">存储层次：寄存器—Cache—主存—辅存；虚拟存储器</div>
+            <div class="kp hot">I/O 控制方式：程序查询 → 中断 → DMA（<span class="tip">DMA 不经过 CPU、直接内存存取）</span></div>
+            <div class="kp">总线分类（数据 / 地址 / 控制）、常见总线</div>
+            <div class="kp hot">可靠性计算：串联 R=R₁R₂…、并联 R=1−(1−R₁)(1−R₂)…；性能指标 MIPS、MTBF</div>
+          </div>
+        </div>
+
+        <details class="lecture">
+          <summary>考点精讲：把组成原理的「必算点」讲透</summary>
+          <div class="lecture-body">
+            <h5>1. 原码 / 反码 / 补码 / 移码（高频）</h5>
+            <ul>
+              <li><b>正数</b>：三码相同，符号位为 0。</li>
+              <li><b>负数</b>：原码符号位为 1；<b>反码 = 原码数值位取反</b>；<b>补码 = 反码 +1</b>（逢二进一）。</li>
+              <li><b>移码 = 补码符号位取反</b>，常用于表示浮点数阶码，便于比较大小。</li>
+              <li>n 位二进制：原码/反码表示范围 −(2<sup>n−1</sup>−1) ~ +(2<sup>n−1</sup>−1)；<b>补码</b>范围 −2<sup>n−1</sup> ~ +(2<sup>n−1</sup>−1)，多表示一个最小负数。</li>
+            </ul>
+            <div class="note">例：−127 的 8 位补码：原码 11111111 → 反码 10000000 → 补码 <b>10000001</b>。而 −128 的 8 位补码是 10000000。</div>
+            <h5>2. 浮点数运算</h5>
+            <p>步骤：<b>对阶（小阶向大阶看齐，尾数右移）→ 尾数加减 → 规格化（左规/右规）→ 舍入 → 判溢出</b>。规格化后尾数最高数值位应为有效位（原码规格化为 0.1…，补码规格化为 1.0… 或 0.1…）。</p>
+            <h5>3. 校验码</h5>
+            <ul>
+              <li><b>奇偶校验</b>只能检奇数位错、不能纠错；</li>
+              <li><b>海明码</b>可检错并纠一位错，校验位位数 k 满足 <b>2<sup>k</sup> ≥ n+k+1</b>（n 为信息位数）；</li>
+              <li><b>CRC 循环冗余校验</b>用生成多项式做模 2 除法，可检错，常用于数据链路层。</li>
+            </ul>
+            <h5>4. Cache 与平均访问时间</h5>
+            <p>平均访问时间 <b>T = h·T<sub>c</sub> + (1−h)·T<sub>m</sub></b>（h 为命中率，T<sub>c</sub> 为 Cache 时间，T<sub>m</sub> 为主存时间）。三种映射：直接映射（一个主存块只能放固定行，易冲突）、全相联（任意放，最灵活但比较器最多）、组相联（折中，先按组号定位再在组内全相联）。</p>
+            <h5>5. 指令流水线</h5>
+            <p>流水线周期 = 各段中<b>时间最长</b>的一段；<b>总时间 = 一条指令完整执行时间 +（指令数−1）× 流水线周期</b>；吞吐率 = 指令数 / 总时间；加速比 = 串行总时间 / 流水总时间。</p>
+            <h5>6. 可靠性</h5>
+            <ul>
+              <li>串联：R = R₁·R₂·…·R<sub>n</sub>（任一部件坏，系统坏）；</li>
+              <li>并联：R = 1−(1−R₁)(1−R₂)…（冗余，全部坏系统才坏）；</li>
+              <li>混联先并后串或先串后并，逐层化简。</li>
+            </ul>
+          </div>
+        </details>
+
+        <div class="quiz-zone" id="zt-01">
+          <div class="quiz-zone-head">
+            <span class="qz-title">真题精练 · 典型高频题（按历年题型整理）</span>
+            <a class="btn-online" href="https://ruankaodaren.com/exam/#/" target="_blank" rel="noopener">在线刷本章真题 ↗</a>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">1</span>某指令流水线由取指、分析、执行三段组成，各段时间分别为 2ns、2ns、1ns。连续执行 1000 条指令，所需时间为（ ）。<span class="qtag">流水线</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> 4000ns</div><div class="opt"><b>B.</b> 2003ns</div><div class="opt"><b>C.</b> 2000ns</div><div class="opt"><b>D.</b> 3000ns</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：B</span>（2003ns）。<br>流水线周期取各段最长 = 2ns；第一条指令完整执行需 2+2+1=5ns；之后每条 1 个周期。总时间 = 5+(1000−1)×2 = <span class="key">2003ns</span>。</div></details>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">2</span>采用海明码进行差错校验，若信息位为 16 位，则至少需要设置（ ）位校验位。<span class="qtag">校验码</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> 4</div><div class="opt"><b>B.</b> 5</div><div class="opt"><b>C.</b> 6</div><div class="opt"><b>D.</b> 16</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：B</span>（5 位）。<br>海明码校验位 k 需满足 2<sup>k</sup> ≥ n+k+1。k=4 时 16 &lt; 21，不满足；k=5 时 32 ≥ 22，满足。故取 <span class="key">5 位</span>。</div></details>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">3</span>某计算机 Cache 存取周期为 10ns，主存存取周期为 100ns，Cache 命中率为 95%，则该存储系统的平均访问时间为（ ）。<span class="qtag">Cache</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> 10ns</div><div class="opt"><b>B.</b> 100ns</div><div class="opt"><b>C.</b> 14.5ns</div><div class="opt"><b>D.</b> 55ns</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：C</span>（14.5ns）。<br>T = h·T<sub>c</sub> +(1−h)·T<sub>m</sub> = 0.95×10 + 0.05×100 = 9.5+5 = <span class="key">14.5ns</span>。</div></details>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 模块2 操作系统 -->
+    <div class="topic-card">
+      <div class="topic-head">
+        <span class="topic-no">02</span>
+        <h3>操作系统</h3>
+        <div class="topic-meta"><span class="meta-pill">5–6 题</span><span class="meta-pill">约 7%</span></div>
+      </div>
+      <div class="topic-body">
+        <div class="kp-group">
+          <h4>进程管理</h4>
+          <div class="kp-list">
+            <div class="kp">进程三态 / 五态及状态转换、进程与线程区别</div>
+            <div class="kp hot">进程调度算法：FCFS、SJF 短作业优先、时间片轮转、优先级（<span class="tip">会算周转/等待时间）</span></div>
+            <div class="kp hot">PV 操作（信号量）：前趋图、互斥与同步、生产者-消费者、读者-写者</div>
+            <div class="kp hot">死锁：四个必要条件、资源分配图、银行家算法（安全序列）</div>
+          </div>
+          <div class="kp-formula">死锁最少资源数：若 n 个进程各需 k 个同类资源，则 <b>n(k−1)+1</b> 个资源可保证不死锁。</div>
+        </div>
+        <div class="kp-group">
+          <h4>存储管理</h4>
+          <div class="kp-list">
+            <div class="kp">分区、分页、分段、段页式管理的特点与区别</div>
+            <div class="kp hot">逻辑地址 → 物理地址换算（页号、页内地址、页表）</div>
+            <div class="kp hot">页面置换算法：OPT 最佳、FIFO（Belady 异常）、LRU、时钟算法（<span class="tip">会模拟缺页次数）</span></div>
+          </div>
+        </div>
+        <div class="kp-group">
+          <h4>设备与文件管理</h4>
+          <div class="kp-list">
+            <div class="kp hot">磁盘调度：FCFS、SSTF 最短寻道、SCAN 电梯、CSCAN（<span class="tip">会算磁头移动道数）</span></div>
+            <div class="kp">SPOOLing 假脱机技术、缓冲技术</div>
+            <div class="kp hot">文件物理结构：连续 / 链接 / 索引（多级索引、混合索引容量计算）</div>
+            <div class="kp">位示图法管理磁盘块、树形目录结构、绝对/相对路径</div>
+          </div>
+        </div>
+
+        <details class="lecture">
+          <summary>考点精讲：操作系统的「计算题套路」</summary>
+          <div class="lecture-body">
+            <h5>1. 进程调度：周转 / 等待时间</h5>
+            <ul>
+              <li><b>周转时间 = 完成时间 − 到达时间</b>；<b>带权周转时间 = 周转时间 / 服务时间</b>；等待时间 = 周转时间 − 服务时间。</li>
+              <li>FCFS 按到达先后；SJF 选服务时间最短（平均等待最小，可能饿死长作业）；时间片轮转按固定片轮流；优先级调度有抢占/非抢占。</li>
+            </ul>
+            <h5>2. PV 操作（信号量）</h5>
+            <ul>
+              <li>P（申请）：S=S−1，若 S&lt;0 则阻塞；V（释放）：S=S+1，若 S≤0 则唤醒一个等待进程。</li>
+              <li><b>互斥</b>：临界资源信号量初值 = 1；<b>同步</b>：前趋信号量初值 = 0，前驱完成后 V，后继执行前 P。</li>
+              <li>生产者-消费者：empty=n、full=0、mutex=1 三个信号量；P 操作顺序不能错（先同步后互斥），否则死锁。</li>
+            </ul>
+            <h5>3. 死锁</h5>
+            <p>四个必要条件：<b>互斥、请求保持、不剥夺、循环等待</b>（缺一不可，破坏其一即可预防）。银行家算法：每次试探分配后系统仍处于<b>安全状态</b>（存在安全序列）才真正分配。</p>
+            <h5>4. 分页地址转换（必考）</h5>
+            <div class="note">页大小 L，逻辑地址 A：<b>页号 = ⌊A/L⌋</b>，<b>页内偏移 = A mod L</b>；查页表得物理块号 B，则 <b>物理地址 = B×L + 页内偏移</b>。</div>
+            <h5>5. 页面置换</h5>
+            <ul>
+              <li><b>OPT</b>：淘汰未来最久不用的（理论最优，无法实现）；<b>FIFO</b>：先进先出，可能 Belady 异常（块增多缺页反增）；</li>
+              <li><b>LRU</b>：淘汰最近最久未访问（基于历史）；时钟算法（最近未用，用访问位近似 LRU）。</li>
+            </ul>
+            <h5>6. 磁盘调度</h5>
+            <p>SSTF 选距离当前磁头最近的请求；SCAN 电梯沿一个方向走到头再折返；CSCAN 单方向走到底后直接回起点再同向。磁头移动总道数 = 各段 |道号差| 之和。</p>
+          </div>
+        </details>
+
+        <div class="quiz-zone" id="zt-02">
+          <div class="quiz-zone-head">
+            <span class="qz-title">真题精练 · 典型高频题（按历年题型整理）</span>
+            <a class="btn-online" href="https://ruankaodaren.com/exam/#/" target="_blank" rel="noopener">在线刷本章真题 ↗</a>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">1</span>系统中有 3 个并发进程，每个进程都需要 4 个同类资源，若要保证系统一定不发生死锁，则该类资源至少应有（ ）个。<span class="qtag">死锁</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> 9</div><div class="opt"><b>B.</b> 10</div><div class="opt"><b>C.</b> 12</div><div class="opt"><b>D.</b> 7</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：B</span>（10 个）。<br>最坏情况下每个进程都占有 k−1=3 个资源并相互等待，共 3×3=9 个；再多 1 个，必有一个进程能获得全部 4 个资源运行完毕并释放，从而解锁。即 <span class="key">n(k−1)+1 = 3×3+1 = 10</span>。</div></details>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">2</span>某分页系统页面大小为 2KB，进程页表如下：页号 0→物理块 5、页号 1→物理块 3、页号 2→物理块 6。则逻辑地址 2500 对应的物理地址是（ ）。<span class="qtag">分页地址</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> 2500</div><div class="opt"><b>B.</b> 6144</div><div class="opt"><b>C.</b> 6596</div><div class="opt"><b>D.</b> 12288</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：C</span>（6596）。<br>页大小 L=2048；页号 = ⌊2500/2048⌋ = 1，页内偏移 = 2500−2048 = 452；查页表页 1 对应物理块 3，物理地址 = 3×2048+452 = 6144+452 = <span class="key">6596</span>。</div></details>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">3</span>进程分配 3 个物理块（初始为空），页面访问序列为 1、2、3、1、4、2，采用 LRU 算法，缺页次数为（ ）。<span class="qtag">页面置换</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> 3</div><div class="opt"><b>B.</b> 4</div><div class="opt"><b>C.</b> 5</div><div class="opt"><b>D.</b> 6</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：C</span>（5 次）。<br>依次：1 缺→2 缺→3 缺→1 命中（块内 2、3、1）→4 缺（淘汰最久未用的 2）→2 缺（淘汰 3）。缺页为 <span class="key">1、2、3、4、2 共 5 次</span>，仅 1 次命中。</div></details>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 模块3 数据库 -->
+    <div class="topic-card">
+      <div class="topic-head">
+        <span class="topic-no">03</span>
+        <h3>数据库系统</h3>
+        <div class="topic-meta"><span class="meta-pill">5–6 题</span><span class="meta-pill">约 7%</span></div>
+      </div>
+      <div class="topic-body">
+        <div class="kp-group">
+          <h4>体系结构与数据模型</h4>
+          <div class="kp-list">
+            <div class="kp hot">三级模式两级映像：外模式 / 概念模式 / 内模式，逻辑与物理独立性</div>
+            <div class="kp hot">E-R 模型：实体、属性、联系（1:1、1:N、M:N），E-R 图转关系模式</div>
+            <div class="kp hot">关系代数：选择 σ、投影 π、连接 ⋈（自然/外连接）、笛卡尔积、除法</div>
+          </div>
+        </div>
+        <div class="kp-group">
+          <h4>SQL 语言</h4>
+          <div class="kp-list">
+            <div class="kp hot">SELECT 单表 / 多表连接 / 嵌套 / 分组 GROUP BY·HAVING、聚集函数</div>
+            <div class="kp">DDL（CREATE/ALTER/DROP）、DML、DCL（GRANT/REVOKE）</div>
+            <div class="kp">视图（虚表）的定义与作用、索引的作用</div>
+          </div>
+        </div>
+        <div class="kp-group">
+          <h4>规范化与事务</h4>
+          <div class="kp-list">
+            <div class="kp hot">函数依赖、部分 / 传递依赖；1NF → 2NF → 3NF → BCNF 的判定</div>
+            <div class="kp hot">模式分解：无损连接性、保持函数依赖的判断</div>
+            <div class="kp hot">事务 ACID；并发控制（封锁协议、两段锁、死锁）、隔离级别</div>
+            <div class="kp">分布式数据库（两阶段提交、CAP）、数据仓库、NoSQL 基础</div>
+          </div>
+        </div>
+
+        <details class="lecture">
+          <summary>考点精讲：数据库的「范式判定 + 关系代数」</summary>
+          <div class="lecture-body">
+            <h5>1. 三级模式两级映像</h5>
+            <ul>
+              <li><b>外模式（视图级）→ 概念模式（逻辑级）→ 内模式（物理级）</b>，共三级模式。</li>
+              <li>外模式/概念模式映像保证<b>逻辑独立性</b>；概念模式/内模式映像保证<b>物理独立性</b>。</li>
+            </ul>
+            <h5>2. E-R 图转关系模式（下午题核心）</h5>
+            <ul>
+              <li>每个实体单独建一张表；</li>
+              <li><b>1:1</b> 联系可合并到任一端；<b>1:N</b> 联系可合并到 N 端（在 N 端加外键）；</li>
+              <li><b>M:N</b> 联系必须单独建一张关系表，属性包含<b>两端实体的主码（作外键）+ 联系自身的属性</b>，其主码一般为两端主码的组合。</li>
+            </ul>
+            <h5>3. 关系代数</h5>
+            <ul>
+              <li>选择 σ：按条件<b>选行</b>；投影 π：按列<b>选列</b>（去重）；连接 ⋈：按条件拼接两表；自然连接 = 同名等值连接 + 去掉重复列。</li>
+            </ul>
+            <h5>4. 范式判定（逐级）</h5>
+            <ul>
+              <li><b>1NF</b>：属性不可再分（原子性）；</li>
+              <li><b>2NF</b>：在 1NF 基础上消除<b>非主属性对主码的部分函数依赖</b>（针对组合主码）；</li>
+              <li><b>3NF</b>：在 2NF 基础上消除<b>非主属性对主码的传递依赖</b>；</li>
+              <li><b>BCNF</b>：消除主属性对主码的部分/传递依赖，即每个决定因素都必须是候选码。</li>
+            </ul>
+            <div class="note">判定技巧：先找<b>候选码</b>（闭包能推出全部属性的最小集）；非主属性完全依赖于码→2NF；无非主属性传递依赖于码→3NF。</div>
+            <h5>5. 事务 ACID 与并发</h5>
+            <p>原子性、一致性、隔离性、持久性。<b>两段锁协议（2PL）</b>：加锁阶段只加锁、释放阶段只解锁，可保证可串行化但可能死锁；S 锁（共享锁/读锁）兼容、X 锁（排他锁/写锁）互斥。</p>
+          </div>
+        </details>
+
+        <div class="quiz-zone" id="zt-03">
+          <div class="quiz-zone-head">
+            <span class="qz-title">真题精练 · 典型高频题（按历年题型整理）</span>
+            <a class="btn-online" href="https://ruankaodaren.com/exam/#/" target="_blank" rel="noopener">在线刷本章真题 ↗</a>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">1</span>关系模式 R(A,B,C) 上的函数依赖集 F={A→B, B→C}，则 R 最高属于（ ）。<span class="qtag">范式</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> 1NF</div><div class="opt"><b>B.</b> 2NF</div><div class="opt"><b>C.</b> 3NF</div><div class="opt"><b>D.</b> BCNF</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：B</span>（2NF）。<br>A 的闭包为 ABC，故 A 是唯一候选码；B、C 为非主属性。因主码是单属性 A，不存在部分依赖，满足 2NF；但存在 A→B→C 的<b>传递依赖</b>（B 非码），故不满足 3NF。最高为 <span class="key">2NF</span>。</div></details>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">2</span>在 E-R 模型中，学生与课程之间存在"选课"多对多（M:N）联系，且联系本身有"成绩"属性。将其转换为关系模式时，关系模式的个数至少是（ ）。<span class="qtag">E-R 转换</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> 2 个</div><div class="opt"><b>B.</b> 3 个</div><div class="opt"><b>C.</b> 4 个</div><div class="opt"><b>D.</b> 1 个</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：B</span>（3 个）。<br>学生实体、课程实体各一张表；<b>M:N 联系必须单独建表</b>（选课：学号、课程号、成绩），共 <span class="key">3 个关系模式</span>。</div></details>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">3</span>关系 R(A,B) 与 S(B,C) 进行自然连接 R⋈S，结果关系中包含的属性列为（ ）。<span class="qtag">关系代数</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> A、B、B、C</div><div class="opt"><b>B.</b> A、B、C</div><div class="opt"><b>C.</b> A、B</div><div class="opt"><b>D.</b> B、C</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：B</span>（A、B、C）。<br>自然连接按同名属性 B 做等值连接，并<b>去掉重复的 B 列</b>，结果属性为 <span class="key">A、B、C 三列</span>。</div></details>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 模块4 网络 -->
+    <div class="topic-card">
+      <div class="topic-head">
+        <span class="topic-no">04</span>
+        <h3>计算机网络</h3>
+        <div class="topic-meta"><span class="meta-pill">4–5 题</span><span class="meta-pill">约 6%</span></div>
+      </div>
+      <div class="topic-body">
+        <div class="kp-group">
+          <h4>网络模型与设备</h4>
+          <div class="kp-list">
+            <div class="kp hot">OSI 七层 与 TCP/IP 四层模型：各层功能、数据单位、协议归属</div>
+            <div class="kp hot">网络设备工作层次：中继器/集线器（物理层）、网桥/交换机（数据链路层）、路由器（网络层）、网关（高层）</div>
+          </div>
+        </div>
+        <div class="kp-group">
+          <h4>IP 地址与核心协议</h4>
+          <div class="kp-list">
+            <div class="kp hot">IP 地址分类（A/B/C/D/E）、子网划分、子网掩码、CIDR 路由汇聚（<span class="tip">必考计算）</span></div>
+            <div class="kp hot">TCP 三次握手 / 四次挥手、TCP 与 UDP 区别、常见端口号</div>
+            <div class="kp">HTTP/HTTPS、DNS 域名解析、DHCP 动态分配、FTP、SMTP/POP3、ARP</div>
+            <div class="kp">IPv6 特点、网络存储（NAS/SAN）、VPN、网络新技术</div>
+          </div>
+        </div>
+
+        <details class="lecture">
+          <summary>考点精讲：子网划分与协议分层（必考）</summary>
+          <div class="lecture-body">
+            <h5>1. 分层模型与协议归属</h5>
+            <table class="mini-tbl m3">
+              <tr><th>OSI 层</th><th>TCP/IP 对应</th><th>代表协议 / 设备</th></tr>
+              <tr><td>物理层</td><td rowspan="2">网络接口层</td><td>中继器、集线器；比特流</td></tr>
+              <tr><td>数据链路层</td><td>网桥、交换机（二层）；帧、PPP、以太网</td></tr>
+              <tr><td>网络层</td><td>网际层</td><td>路由器（三层）；IP、ICMP、ARP、OSPF</td></tr>
+              <tr><td>传输层</td><td>传输层</td><td>TCP、UDP；端口</td></tr>
+              <tr><td>会话/表示/应用层</td><td>应用层</td><td>HTTP、FTP、DNS、SMTP、Telnet</td></tr>
+            </table>
+            <h5>2. IP 地址分类与子网划分</h5>
+            <ul>
+              <li>A 类：首字节 1–126，默认掩码 /8；B 类：128–191，/16；C 类：192–223，/24；D 类组播 224–239；E 类保留。</li>
+              <li>借用 n 位主机位做子网：<b>子网数 = 2<sup>n</sup></b>；每子网可用主机数 = <b>2<sup>主机位</sup>−2</b>（减去网络地址和广播地址）。</li>
+              <li>块大小 = 256 − 掩码最后一个字节；网络地址按块大小递增，广播地址 = 下一个网络地址 −1。</li>
+            </ul>
+            <div class="note">路由汇聚（CIDR）：把多个连续子网取最长公共前缀，聚合为一个网络地址。</div>
+            <h5>3. TCP 与 UDP、常用端口</h5>
+            <ul>
+              <li><b>TCP</b>：面向连接、可靠、三次握手建立、四次挥手释放；<b>UDP</b>：无连接、不可靠、开销小、速度快。</li>
+              <li>常用端口：HTTP 80、HTTPS 443、FTP 20/21、SSH 22、Telnet 23、SMTP 25、DNS 53、POP3 110、SNMP 161。</li>
+            </ul>
+            <h5>4. 常见协议作用</h5>
+            <p>DNS 域名→IP（递归+迭代查询）；DHCP 自动分配 IP（发现→提供→请求→确认）；ARP 由 IP 求 MAC（局域网）；NAT 内网私有地址与公网地址转换。</p>
+          </div>
+        </details>
+
+        <div class="quiz-zone" id="zt-04">
+          <div class="quiz-zone-head">
+            <span class="qz-title">真题精练 · 典型高频题（按历年题型整理）</span>
+            <a class="btn-online" href="https://ruankaodaren.com/exam/#/" target="_blank" rel="noopener">在线刷本章真题 ↗</a>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">1</span>某主机 IP 地址为 192.168.1.65，子网掩码为 255.255.255.192，则该主机所在子网的网络地址是（ ）。<span class="qtag">子网划分</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> 192.168.1.0</div><div class="opt"><b>B.</b> 192.168.1.64</div><div class="opt"><b>C.</b> 192.168.1.32</div><div class="opt"><b>D.</b> 192.168.1.128</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：B</span>（192.168.1.64）。<br>掩码末字节 192 = 11000000，即 /26，块大小 = 256−192 = 64。子网依次为 0、64、128、192；65 落在 64 子网内，故网络地址为 <span class="key">192.168.1.64</span>（广播地址 192.168.1.127，可用主机 62 台）。</div></details>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">2</span>将一个 C 类网络划分成至少 6 个子网，每个子网至少容纳 26 台主机，应使用的子网掩码是（ ）。<span class="qtag">子网掩码</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> 255.255.255.192</div><div class="opt"><b>B.</b> 255.255.255.224</div><div class="opt"><b>C.</b> 255.255.255.240</div><div class="opt"><b>D.</b> 255.255.255.248</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：B</span>（255.255.255.224）。<br>至少 6 个子网需借 n 位：2<sup>3</sup>=8≥6，借 3 位，掩码 /27 = 255.255.255.224；此时每子网主机位 5 位，可用主机 2<sup>5</sup>−2 = 30≥26，满足。<span class="key">选 224</span>（192 只有 4 个子网，不够）。</div></details>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">3</span>下列网络互联设备中，工作在 OSI 参考模型数据链路层（第二层）的是（ ）。<span class="qtag">设备层次</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> 中继器</div><div class="opt"><b>B.</b> 集线器</div><div class="opt"><b>C.</b> 网桥</div><div class="opt"><b>D.</b> 路由器</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：C</span>（网桥）。<br>中继器、集线器在物理层；网桥、二层交换机在数据链路层（根据 MAC 帧转发）；路由器在网络层。故选 <span class="key">网桥</span>。</div></details>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 模块5 数据结构与算法（重点） -->
+    <div class="topic-card key">
+      <div class="topic-head">
+        <span class="topic-no">05</span>
+        <h3>数据结构与算法</h3>
+        <div class="topic-meta"><span class="meta-pill hot">上午 5–8 题 + 下午 1 题</span><span class="meta-pill hot">核心</span></div>
+      </div>
+      <div class="topic-body">
+        <div class="kp-group">
+          <h4>线性结构</h4>
+          <div class="kp-list">
+            <div class="kp hot">顺序表与链表（单 / 双 / 循环）：插入删除的时间复杂度与特点</div>
+            <div class="kp hot">栈（后进先出）与队列（先进先出）：循环队列判空判满、应用（括号匹配、表达式求值、递归）</div>
+            <div class="kp">串的模式匹配：KMP 算法与 next 数组</div>
+            <div class="kp">数组存储、特殊矩阵（对称 / 三角 / 稀疏）压缩与地址计算</div>
+          </div>
+        </div>
+        <div class="kp-group">
+          <h4>树与二叉树</h4>
+          <div class="kp-list">
+            <div class="kp hot">二叉树性质（第 i 层最多节点数、深度 k 最多节点数、n₀=n₂+1）</div>
+            <div class="kp hot">二叉树遍历（前/中/后/层序）及由遍历序列还原二叉树</div>
+            <div class="kp hot">哈夫曼树构造与哈夫曼编码（带权路径长度 WPL、前缀编码）</div>
+            <div class="kp hot">二叉排序树 BST、平衡二叉树 AVL（旋转）、B 树 / B+ 树区别</div>
+            <div class="kp">线索二叉树、完全二叉树与满二叉树</div>
+          </div>
+        </div>
+        <div class="kp-group">
+          <h4>图</h4>
+          <div class="kp-list">
+            <div class="kp">图的存储：邻接矩阵、邻接表；度的计算</div>
+            <div class="kp hot">图的遍历：DFS 深度优先、BFS 广度优先</div>
+            <div class="kp hot">最小生成树：Prim（从顶点）、Kruskal（从边）</div>
+            <div class="kp hot">最短路径：Dijkstra（单源）、Floyd（多源）</div>
+            <div class="kp hot">拓扑排序（AOV 网）、关键路径（AOE 网，求最早/最晚时间、关键活动）</div>
+          </div>
+        </div>
+        <div class="kp-group">
+          <h4>查找、排序与复杂度</h4>
+          <div class="kp-list">
+            <div class="kp hot">二分查找（条件、比较次数、判定树）</div>
+            <div class="kp hot">哈希表：哈希函数、冲突处理（开放定址 / 链地址）、装填因子</div>
+            <div class="kp hot">八大排序的时间 / 空间复杂度与稳定性（见下表）</div>
+            <div class="kp hot">算法时间复杂度与空间复杂度分析（大 O 表示）</div>
+          </div>
+          <div class="kp-formula">
+            排序复杂度速记：<b>快排 / 堆排 / 归并 / 希尔</b> 平均 O(nlog₂n)；<b>冒泡 / 插入 / 简单选择</b> O(n²)；<b>基数排序</b> O(d·n)。
+            稳定排序：冒泡、插入、归并、基数；不稳定：快排、堆排、简单选择、希尔。
+          </div>
+        </div>
+
+        <details class="lecture">
+          <summary>考点精讲：数据结构「公式 + 树/图算法」全梳理</summary>
+          <div class="lecture-body">
+            <h5>1. 二叉树性质</h5>
+            <ul>
+              <li>第 i 层最多 <b>2<sup>i−1</sup></b> 个节点；深度为 k 的二叉树最多 <b>2<sup>k</sup>−1</b> 个节点。</li>
+              <li><b>叶子数 n₀ = 度为 2 的节点数 n₂ + 1</b>（由"边数=节点数−1"推导，几乎年年考）。</li>
+              <li>完全二叉树 n 个节点的深度为 ⌊log₂n⌋+1。</li>
+            </ul>
+            <h5>2. 由遍历序列还原二叉树</h5>
+            <p>前序首字符 / 后序末字符是根；用根在中序中的位置切分左右子树，递归还原。<b>必须有中序</b>才能唯一确定（前序+后序不行）。</p>
+            <h5>3. 哈夫曼树</h5>
+            <ul>
+              <li>每次取权值最小的两棵树合并，新权值为二者之和，重复到只剩一棵；<b>无度为 1 的节点</b>，n 个叶子共 2n−1 个节点。</li>
+              <li><b>WPL（带权路径长度）= 所有非叶子节点权值之和</b>（比逐个叶子算路径更快捷）；哈夫曼编码是前缀码（任一编码不是另一个的前缀）。</li>
+            </ul>
+            <h5>4. 图的核心算法</h5>
+            <ul>
+              <li>最小生成树：<b>Prim 从顶点</b>出发逐点扩展（适合稠密图），<b>Kruskal 从边</b>按权选（适合稀疏图），二者总权值相同。</li>
+              <li>最短路径：<b>Dijkstra 单源</b>（不能处理负权）、<b>Floyd 多源</b>（任意两点，可处理部分负权）。</li>
+              <li>关键路径（AOE）：关键活动 = 最早开始时间与最晚开始时间相等的活动；<b>顶点（事件）最早 ve 取 max、最晚 vl 取 min</b>。</li>
+            </ul>
+            <h5>5. 查找</h5>
+            <p>二分查找要求<b>顺序存储且有序</b>，比较次数最多 ⌊log₂n⌋+1；哈希冲突处理：开放定址（线性探测、二次探测、再散列）与链地址；装填因子 α = 表中记录数/表长，越大冲突越多。</p>
+            <h5>6. 排序选择</h5>
+            <ul>
+              <li>要求<b>稳定</b>且 n 较大：归并排序；平均快、最坏 O(n²)：快排；最坏也保证 O(nlogn)：堆排、归并。</li>
+              <li>n 很小（如 &lt;50）：直接插入/简单选择即可。</li>
+            </ul>
+          </div>
+        </details>
+
+        <div class="quiz-zone" id="zt-05">
+          <div class="quiz-zone-head">
+            <span class="qz-title">真题精练 · 核心高频题（数据结构几乎每年必考）</span>
+            <a class="btn-online" href="https://ruankaodaren.com/exam/#/" target="_blank" rel="noopener">在线刷本章真题 ↗</a>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">1</span>一棵二叉树中共有 5 个度为 2 的结点，且没有度为 1 的结点，则该树中度为 0 的叶子结点个数为（ ）。<span class="qtag">二叉树性质</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> 4</div><div class="opt"><b>B.</b> 5</div><div class="opt"><b>C.</b> 6</div><div class="opt"><b>D.</b> 7</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：C</span>（6）。<br>二叉树恒有 <b>n₀ = n₂ + 1</b>，与度为 1 的节点无关。n₂=5，则 n₀ = 5+1 = <span class="key">6</span>。</div></details>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">2</span>给定 4 个权值 {1,2,3,4}，构造哈夫曼树，其带权路径长度 WPL 为（ ）。<span class="qtag">哈夫曼</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> 17</div><div class="opt"><b>B.</b> 18</div><div class="opt"><b>C.</b> 19</div><div class="opt"><b>D.</b> 20</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：C</span>（19）。<br>合并过程：1+2=3 → 3+3=6 → 4+6=10；<b>WPL = 各非叶子节点权值之和 = 3+6+10 = 19</b>。</div></details>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">3</span>已知一棵二叉树的前序遍历为 ABDECF，中序遍历为 DBEAFC，则其后序遍历为（ ）。<span class="qtag">遍历还原</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> DEBFCA</div><div class="opt"><b>B.</b> DBEFCA</div><div class="opt"><b>C.</b> DEBFAC</div><div class="opt"><b>D.</b> DBEACF</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：A</span>（DEBFCA）。<br>前序首 A 为根；中序中 A 左侧 DBE 为左子树、右侧 FC 为右子树。左子树根 B（D 左、E 右），右子树根 C（F 为 C 左孩子）。后序为左-右-根：<span class="key">D-E-B-F-C-A</span>。</div></details>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">4</span>下列排序算法中，平均时间复杂度为 O(nlog₂n) 且不稳定的是（ ）。<span class="qtag">排序</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> 归并排序</div><div class="opt"><b>B.</b> 快速排序</div><div class="opt"><b>C.</b> 冒泡排序</div><div class="opt"><b>D.</b> 直接插入排序</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：B</span>（快速排序）。<br>快排平均 O(nlog₂n)，但分区交换会改变相等元素相对次序，属于<b>不稳定</b>排序；归并虽为 O(nlog₂n) 但稳定，冒泡、插入均为 O(n²) 且稳定。</div></details>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 模块6 程序语言与编译 -->
+    <div class="topic-card">
+      <div class="topic-head">
+        <span class="topic-no">06</span>
+        <h3>程序设计语言与编译原理</h3>
+        <div class="topic-meta"><span class="meta-pill">3–4 题</span><span class="meta-pill">约 5%</span></div>
+      </div>
+      <div class="topic-body">
+        <div class="kp-group">
+          <h4>语言基础</h4>
+          <div class="kp-list">
+            <div class="kp hot">编译方式 与 解释方式 的区别（是否生成目标程序）</div>
+            <div class="kp hot">参数传递：传值调用（形参改变不影响实参）与 传址 / 引用调用</div>
+            <div class="kp">变量的作用域与生存期、各种程序语言（C/Java/Python/Lisp/Prolog）特点</div>
+          </div>
+        </div>
+        <div class="kp-group">
+          <h4>编译程序原理</h4>
+          <div class="kp-list">
+            <div class="kp hot">编译过程：词法分析 → 语法分析 → 语义分析 → 中间代码生成 → 代码优化 → 目标代码</div>
+            <div class="kp hot">正规式与有限自动机：NFA、DFA 及二者转换、状态数</div>
+            <div class="kp">语法分析方法：自顶向下 LL(1)、自底向上 LR（算符优先、移归约）</div>
+            <div class="kp">中间代码形式（三元式、四元式、逆波兰式后缀）、符号表</div>
+          </div>
+        </div>
+
+        <details class="lecture">
+          <summary>考点精讲：传参、编译阶段与后缀表达式</summary>
+          <div class="lecture-body">
+            <h5>1. 编译方式 vs 解释方式</h5>
+            <p>编译把整个源程序翻译成目标程序（生成可执行文件）再执行，运行快；解释方式<b>边翻译边执行、不生成目标程序</b>，灵活但慢。</p>
+            <h5>2. 参数传递（高频）</h5>
+            <ul>
+              <li><b>传值调用（call by value）</b>：实参把值复制给形参，形参改变<b>不影响</b>实参（单向）。</li>
+              <li><b>引用 / 传址调用（by reference）</b>：传递地址，形参就是实参的别名，形参改变<b>会影响</b>实参。</li>
+            </ul>
+            <h5>3. 编译六个阶段</h5>
+            <p>词法分析（识别单词 Token，输出单词符号流）→ 语法分析（按文法组词成句，<b>构造语法树</b>）→ 语义分析（<b>类型检查、静态语义</b>）→ 中间代码生成 → 代码优化 → 目标代码生成。表格管理（符号表）与出错处理贯穿全程。</p>
+            <h5>4. 后缀表达式（逆波兰式）</h5>
+            <ul>
+              <li>运算符紧跟在其两个操作数之后，<b>无需括号、无优先级歧义</b>。</li>
+              <li>中缀 a+b*c → 后缀 <b>abc*+</b>（先乘后加）；中缀 a*(b+c) → 后缀 <b>abc+*</b>（括号内先算）。</li>
+            </ul>
+            <h5>5. 正规式与有限自动机</h5>
+            <p>正规式 → NFA → DFA → 最小化 DFA；DFA 对每个状态和输入符号都有唯一确定的后继（无 ε 边、无多个后继），NFA 则可能有多个或空转移。两者识别能力等价。</p>
+          </div>
+        </details>
+
+        <div class="quiz-zone" id="zt-06">
+          <div class="quiz-zone-head">
+            <span class="qz-title">真题精练 · 典型高频题（按历年题型整理）</span>
+            <a class="btn-online" href="https://ruankaodaren.com/exam/#/" target="_blank" rel="noopener">在线刷本章真题 ↗</a>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">1</span>中缀表达式 a + b × c 对应的逆波兰式（后缀表达式）是（ ）。<span class="qtag">中间代码</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> abc+×</div><div class="opt"><b>B.</b> abc×+</div><div class="opt"><b>C.</b> ab+c×</div><div class="opt"><b>D.</b> a+bc×</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：B</span>（abc×+）。<br>乘法优先级高于加法，先算 b×c（写成 bc×），再与 a 相加，整体为 <span class="key">abc×+</span>。</div></details>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">2</span>在函数调用中，若采用传值调用（call by value），下列说法正确的是（ ）。<span class="qtag">参数传递</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> 形参改变会影响实参</div>
+              <div class="opt"><b>B.</b> 传递的是实参的地址</div>
+              <div class="opt"><b>C.</b> 形参是实参的副本，形参改变不影响实参</div>
+              <div class="opt"><b>D.</b> 实参与形参共享同一存储单元</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：C</span>。<br>传值调用把实参的值复制给形参，二者存储单元不同，函数内修改形参只在副本上生效，<b>不影响实参</b>。A、B、D 描述的都是引用（传址）调用。</div></details>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">3</span>编译程序在编译过程中，对表达式进行运算类型是否匹配、变量是否已声明等静态检查，这一工作属于（ ）。<span class="qtag">编译阶段</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> 词法分析</div><div class="opt"><b>B.</b> 语法分析</div><div class="opt"><b>C.</b> 语义分析</div><div class="opt"><b>D.</b> 目标代码生成</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：C</span>（语义分析）。<br>词法分析识别单词；语法分析检查句子结构是否符合文法并构造语法树；<b>语义分析负责类型检查、静态语义校验（如类型匹配、声明检查）</b>；目标代码生成在最后。</div></details>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 模块7 软件工程（重点） -->
+    <div class="topic-card key">
+      <div class="topic-head">
+        <span class="topic-no">07</span>
+        <h3>软件工程</h3>
+        <div class="topic-meta"><span class="meta-pill hot">10–12 题</span><span class="meta-pill hot">占比最高</span></div>
+      </div>
+      <div class="topic-body">
+        <div class="kp-group">
+          <h4>生命周期与过程模型</h4>
+          <div class="kp-list">
+            <div class="kp">软件生命周期：可行性分析、需求、概要/详细设计、编码、测试、维护</div>
+            <div class="kp hot">瀑布模型、增量模型、螺旋模型（含风险分析）、喷泉模型（面向对象、迭代无间隙）</div>
+            <div class="kp hot">V 模型（测试与开发阶段对应）、原型化模型、RUP/UP（四个阶段、用例驱动）</div>
+            <div class="kp hot">敏捷开发：Scrum（角色/迭代/冲刺）、XP 极限编程（结对、测试驱动、持续集成）</div>
+          </div>
+        </div>
+        <div class="kp-group">
+          <h4>需求分析与软件设计</h4>
+          <div class="kp-list">
+            <div class="kp">需求工程：获取、分析、规格说明、验证；功能需求与非功能需求</div>
+            <div class="kp hot">结构化分析工具：数据流图 DFD、数据字典、加工逻辑（判定表 / 判定树 / 结构化语言）</div>
+            <div class="kp hot">模块独立性：<b>耦合</b>（从低到高：无直接—数据—标记—控制—外部—公共—内容）与 <b>内聚</b>（从高到低：功能—顺序—通信—过程—时间—逻辑—偶然）；高内聚低耦合</div>
+            <div class="kp">系统结构图（模块调用、扇入扇出）、结构化设计原则</div>
+          </div>
+        </div>
+        <div class="kp-group">
+          <h4>软件测试</h4>
+          <div class="kp-list">
+            <div class="kp hot">测试阶段：单元测试（模块）、集成测试（自顶向下/自底向上/三明治）、确认测试、系统测试</div>
+            <div class="kp hot">白盒测试：语句覆盖、判定（分支）覆盖、条件覆盖、判定/条件覆盖、路径覆盖（覆盖强度递增）</div>
+            <div class="kp hot">McCabe 环路复杂度 V(G)= 判定节点数 +1 = 边数 − 节点数 +2</div>
+            <div class="kp hot">黑盒测试：等价类划分、边界值分析、错误推测、因果图</div>
+            <div class="kp">回归测试、α/β 测试、测试用例设计</div>
+          </div>
+        </div>
+        <div class="kp-group">
+          <h4>维护、质量与项目管理</h4>
+          <div class="kp-list">
+            <div class="kp hot">软件维护分类：改正性、适应性、完善性（占比最大）、预防性</div>
+            <div class="kp hot">质量模型 ISO/IEC 9126：功能性、可靠性、易用性、效率、可维护性、可移植性</div>
+            <div class="kp hot">进度管理：Gantt 图、PERT 图（求关键路径、最早/最晚开始、松弛时间）、三点估算</div>
+            <div class="kp">成本估算 COCOMO 模型、软件能力成熟度 CMM/CMMI（五级）</div>
+            <div class="kp">风险管理（识别/暴露/风险曝光度）、配置管理（配置项、基线、版本控制）、软件评审</div>
+          </div>
+        </div>
+
+        <details class="lecture">
+          <summary>考点精讲：耦合内聚、白盒测试、维护与风险计算</summary>
+          <div class="lecture-body">
+            <h5>1. 过程模型特征辨析</h5>
+            <ul>
+              <li><b>瀑布</b>：阶段分明、文档驱动，需求明确时用；<b>增量</b>：分批交付可用产品；</li>
+              <li><b>螺旋</b>：每圈都做<b>风险分析</b>，适合大型高风险项目；<b>喷泉</b>：面向对象，迭代无间隙；</li>
+              <li><b>V 模型</b>：编码在下，左侧开发与右侧测试一一对应（需求↔验收、概要↔系统、详细↔集成、编码↔单元）；<b>敏捷</b>：Scrum 冲刺、XP 结对/TDD。</li>
+            </ul>
+            <h5>2. 耦合（从低到高）与内聚（从高到低）</h5>
+            <table class="mini-tbl m2">
+              <tr><th>耦合（越低越好）</th><th>含义</th></tr>
+              <tr><td>无直接 → 数据</td><td>仅传简单数据值（最常见的低耦合）</td></tr>
+              <tr><td>标记</td><td>传数据结构的地址（记录/结构体）</td></tr>
+              <tr><td>控制</td><td>传开关量、标志位控制另一模块</td></tr>
+              <tr><td>外部 / 公共</td><td>共享外部格式 / 公共数据区（全局变量）</td></tr>
+              <tr><td>内容（最高、最差）</td><td>直接访问另一模块内部代码或数据</td></tr>
+            </table>
+            <p>内聚由高到低：功能 &gt; 顺序 &gt; 通信 &gt; 过程 &gt; 时间 &gt; 逻辑 &gt; 偶然。目标是<b>高内聚、低耦合</b>。</p>
+            <h5>3. 白盒测试覆盖强度</h5>
+            <p>语句覆盖（每条语句）&lt; 判定覆盖（每个判定的真假分支）&lt; 条件覆盖（每个条件的真假）&lt; 判定/条件覆盖 &lt; 条件组合覆盖 &lt; 路径覆盖（最强）。</p>
+            <div class="note"><b>McCabe 环路复杂度</b>：V(G) = 判定节点数 + 1 = <b>边数 − 节点数 + 2</b>；建议复杂度不超过 10。</div>
+            <h5>4. 软件维护分类</h5>
+            <ul>
+              <li><b>改正性</b>：改正在开发期未发现的错误；<b>适应性</b>：适应新环境/新软硬件；</li>
+              <li><b>完善性</b>：增加新功能、改善性能（<b>占比最大，约 50%–60%</b>）；<b>预防性</b>：提高可维护性。</li>
+            </ul>
+            <h5>5. 风险曝光度与 CMM</h5>
+            <ul>
+              <li><b>风险曝光度 RE = 风险发生概率 × 风险造成的损失</b>（金额）。</li>
+              <li>CMM 五级：初始级 → 可重复级 → 已定义级 → 已管理级 → 优化级。</li>
+            </ul>
+          </div>
+        </details>
+
+        <div class="quiz-zone" id="zt-07">
+          <div class="quiz-zone-head">
+            <span class="qz-title">真题精练 · 高频题（软件工程占比最高，务必拿分）</span>
+            <a class="btn-online" href="https://ruankaodaren.com/exam/#/" target="_blank" rel="noopener">在线刷本章真题 ↗</a>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">1</span>模块 A 调用模块 B 时，通过参数把一个简单的数值量传送给 B，A、B 之间的耦合类型属于（ ）。<span class="qtag">耦合</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> 数据耦合</div><div class="opt"><b>B.</b> 标记耦合</div><div class="opt"><b>C.</b> 控制耦合</div><div class="opt"><b>D.</b> 公共耦合</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：A</span>（数据耦合）。<br>仅传递简单数据值是<b>数据耦合</b>；传数据结构地址为标记耦合；传开关/标志为控制耦合；共享全局数据区为公共耦合。</div></details>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">2</span>某程序控制流图中共有 9 条边、7 个节点，则按 McCabe 方法计算的环路复杂度 V(G) 为（ ）。<span class="qtag">白盒测试</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> 2</div><div class="opt"><b>B.</b> 3</div><div class="opt"><b>C.</b> 4</div><div class="opt"><b>D.</b> 5</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：C</span>（4）。<br>V(G) = 边数 − 节点数 + 2 = 9 − 7 + 2 = <span class="key">4</span>（也等于判定节点数 + 1）。</div></details>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">3</span>在软件交付后的各类维护中，为增加新功能、改善性能而进行的维护称为（ ），它在全部维护工作中占比最大。<span class="qtag">维护</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> 改正性维护</div><div class="opt"><b>B.</b> 适应性维护</div><div class="opt"><b>C.</b> 完善性维护</div><div class="opt"><b>D.</b> 预防性维护</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：C</span>（完善性维护）。<br>改错误是改正性、适应新环境是适应性、<b>增加功能/提升性能是完善性（占比最大）</b>、提前改造是预防性。</div></details>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">4</span>某风险发生的概率为 0.3，一旦发生将造成 10 万元损失，则该风险的风险曝光度为（ ）。<span class="qtag">风险管理</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> 0.3 万元</div><div class="opt"><b>B.</b> 3 万元</div><div class="opt"><b>C.</b> 10 万元</div><div class="opt"><b>D.</b> 7 万元</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：B</span>（3 万元）。<br>风险曝光度 = 发生概率 × 损失 = 0.3 × 10 = <span class="key">3 万元</span>。</div></details>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 模块8 面向对象与UML（重点） -->
+    <div class="topic-card key">
+      <div class="topic-head">
+        <span class="topic-no">08</span>
+        <h3>面向对象与 UML</h3>
+        <div class="topic-meta"><span class="meta-pill hot">上午 5–6 题 + 下午 1 题</span><span class="meta-pill hot">核心</span></div>
+      </div>
+      <div class="topic-body">
+        <div class="kp-group">
+          <h4>面向对象基础</h4>
+          <div class="kp-list">
+            <div class="kp hot">基本概念：对象、类、封装 / 信息隐藏、继承（单/多）、多态（重载/重写/动态绑定）、消息</div>
+            <div class="kp">面向对象分析 OOA 与设计 OOD 的职责与区别、设计原则（单一职责、开闭、里氏替换、依赖倒置等）</div>
+          </div>
+        </div>
+        <div class="kp-group">
+          <h4>UML 图分类</h4>
+          <div class="kp-list">
+            <div class="kp hot">结构图：类图、对象图、构件（组件）图、部署图、组合结构图</div>
+            <div class="kp hot">行为图：用例图、活动图、状态图、顺序（序列）图、通信图、定时图</div>
+            <div class="kp hot">各图用途辨析：用例图（参与者与功能）、顺序图（对象按时间交互）、状态图（对象状态迁移）、活动图（流程/并发分支）</div>
+          </div>
+        </div>
+        <div class="kp-group">
+          <h4>类图关系（必考）</h4>
+          <div class="kp-list">
+            <div class="kp hot">依赖（虚线箭头，最弱）、关联（实线箭头）</div>
+            <div class="kp hot">聚合（空心菱形，整体-部分可分离）、组合 / 组成（实心菱形，不可分离）</div>
+            <div class="kp hot">泛化 / 继承（实线空心三角）、实现（虚线空心三角）</div>
+            <div class="kp">多重度（1、0..1、0..*、1..*）、类的属性与操作可见性符号（+ 公有的、− 私有的、# 保护的）</div>
+          </div>
+          <div class="kp-formula">关系由弱到强：<b>依赖 &lt; 关联 &lt; 聚合 &lt; 组合 &lt; 泛化 / 实现</b>。菱形端指向"整体"。</div>
+        </div>
+
+        <details class="lecture">
+          <summary>考点精讲：类图六种关系的画法与多重度（下午题必考）</summary>
+          <div class="lecture-body">
+            <h5>1. 面向对象三大特性</h5>
+            <ul>
+              <li><b>封装</b>：隐藏内部实现、对外提供接口；<b>继承</b>：子类复用父类；<b>多态</b>：同一接口不同实现，分静态多态（重载，编译期）与动态多态（重写+动态绑定，运行期）。</li>
+            </ul>
+            <h5>2. 设计原则（SOLID）</h5>
+            <ul>
+              <li>单一职责、开闭（对扩展开放、对修改关闭）、里氏替换、依赖倒置（依赖抽象不依赖具体）、接口隔离；再加合成复用原则（多用组合少用继承）。</li>
+            </ul>
+            <h5>3. 类图六种关系（记图形 + 记强弱）</h5>
+            <table class="mini-tbl m3">
+              <tr><th>关系</th><th>UML 画法</th><th>含义</th></tr>
+              <tr><td>依赖</td><td>虚线 + 空心箭头</td><td>临时使用一个类（方法参数、局部变量），最弱</td></tr>
+              <tr><td>关联</td><td>实线 + 箭头</td><td>长期持有引用（如成员变量）</td></tr>
+              <tr><td>聚合</td><td>实线 + <b>空心菱形</b></td><td>整体-部分，部分可脱离整体（公司-员工）</td></tr>
+              <tr><td>组合/组成</td><td>实线 + <b>实心菱形</b></td><td>整体-部分，同生共死、不可分离（公司-部门）</td></tr>
+              <tr><td>泛化(继承)</td><td>实线 + 空心三角</td><td>is-a，子类指向父类</td></tr>
+              <tr><td>实现</td><td>虚线 + 空心三角</td><td>实现接口</td></tr>
+            </table>
+            <div class="note">菱形始终在"整体/拥有者"那一端；空心=可分离（聚合），实心=不可分离（组合）。</div>
+            <h5>4. 多重度与可见性</h5>
+            <ul>
+              <li>1（恰好一个）、0..1（零或一）、0..*（零或多个）、1..*（一或多个）、m..n。</li>
+              <li>可见性符号：<b>+ 公有、− 私有、# 保护、~ 包内</b>。</li>
+            </ul>
+            <h5>5. 行为图用途辨析</h5>
+            <p><b>顺序图</b>强调对象间消息的时间顺序（生命线 + 消息）；<b>通信图</b>强调对象间的连接结构；<b>状态图</b>描述一个对象在生命周期内的状态迁移；<b>活动图</b>描述流程、分支与并发（泳道）。</p>
+          </div>
+        </details>
+
+        <div class="quiz-zone" id="zt-08">
+          <div class="quiz-zone-head">
+            <span class="qz-title">真题精练 · 核心高频题（UML 关系年年考）</span>
+            <a class="btn-online" href="https://ruankaodaren.com/exam/#/" target="_blank" rel="noopener">在线刷本章真题 ↗</a>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">1</span>在 UML 类图中，表示"整体与部分"关系，且部分对象不能脱离整体对象而单独存在、随整体一起创建和销毁，这种关系是（ ）。<span class="qtag">类图关系</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> 聚合</div><div class="opt"><b>B.</b> 组合（组成）</div><div class="opt"><b>C.</b> 关联</div><div class="opt"><b>D.</b> 依赖</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：B</span>（组合）。<br>聚合用空心菱形、部分可独立存在；<b>组合用实心菱形，整体与部分同生命周期、不可分离</b>。如公司与部门为组合，公司与员工为聚合。</div></details>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">2</span>下列 UML 图中，用于强调对象之间按时间先后顺序进行消息交互的是（ ）。<span class="qtag">行为图</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> 类图</div><div class="opt"><b>B.</b> 顺序图（序列图）</div><div class="opt"><b>C.</b> 用例图</div><div class="opt"><b>D.</b> 部署图</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：B</span>（顺序图）。<br>顺序图通过对象的生命线和纵向排列的消息，刻画对象间<b>按时间顺序</b>的交互；类图/部署图是结构图，用例图描述参与者与功能。</div></details>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">3</span>在 UML 类图中，类与类之间的"泛化（继承）"关系，其图形表示是（ ）。<span class="qtag">类图关系</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> 实线加空心三角形箭头</div><div class="opt"><b>B.</b> 虚线加空心三角形箭头</div><div class="opt"><b>C.</b> 实线加空心菱形</div><div class="opt"><b>D.</b> 虚线加普通箭头</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：A</span>。<br><b>泛化（继承）= 实线 + 空心三角</b>，箭头由子类指向父类；实现接口 = 虚线 + 空心三角；菱形是聚合/组合；虚线普通箭头是依赖。</div></details>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 模块9 设计模式（重点） -->
+    <div class="topic-card key">
+      <div class="topic-head">
+        <span class="topic-no">09</span>
+        <h3>设计模式（GoF 23 种）</h3>
+        <div class="topic-meta"><span class="meta-pill hot">上午考 + 下午选考题</span><span class="meta-pill hot">核心</span></div>
+      </div>
+      <div class="topic-body">
+        <div class="kp-group">
+          <h4>三大分类与模式意图</h4>
+          <div class="table-scroll"><table class="dp-table">
+            <colgroup><col style="width:16%"><col style="width:46%"><col style="width:38%"></colgroup>
+            <thead><tr><th>分类</th><th>模式（意图）</th><th>高频 / 典型场景</th></tr></thead>
+            <tbody>
+              <tr>
+                <td class="cat" rowspan="5">创建型<br><small>5 种<br>对象创建</small></td>
+                <td><b>单例 Singleton</b>：保证一个类只有一个实例，提供全局访问点</td>
+                <td class="freq">高频 · 配置类、日志、连接池</td>
+              </tr>
+              <tr><td><b>工厂方法 Factory Method</b>：定义创建对象接口，让子类决定实例化哪个类</td><td class="freq">高频 · 框架中解耦对象创建</td></tr>
+              <tr><td><b>抽象工厂 Abstract Factory</b>：创建一系列相关 / 相互依赖的对象族</td><td class="freq">高频 · 跨平台 UI、产品族</td></tr>
+              <tr><td><b>建造者 Builder</b>：将复杂对象的构建与表示分离，分步构建</td><td class="freq">高频 · 多参数复杂对象</td></tr>
+              <tr><td><b>原型 Prototype</b>：通过复制（克隆）已有实例创建新对象</td><td>深 / 浅拷贝</td></tr>
+              <tr>
+                <td class="cat" rowspan="7">结构型<br><small>7 种<br>类/对象组合</small></td>
+                <td><b>适配器 Adapter</b>：转换接口，使不兼容的类能一起工作（类/对象适配器）</td><td class="freq">高频 · 复用旧接口</td></tr>
+              <tr><td><b>桥接 Bridge</b>：将抽象与实现分离，使二者可独立变化（多维度变化）</td><td class="freq">高频 · 多维度组合</td></tr>
+              <tr><td><b>组合 Composite</b>：树形结构表示"整体-部分"，统一对待容器与叶子</td><td>文件目录、菜单树</td></tr>
+              <tr><td><b>装饰器 Decorator</b>：动态给对象添加职责，比继承灵活</td><td class="freq">高频 · Java IO 流</td></tr>
+              <tr><td><b>外观 Facade</b>：为子系统提供统一的高层接口</td><td>一键操作、简化调用</td></tr>
+              <tr><td><b>享元 Flyweight</b>：运用共享技术支持大量细粒度对象（享元工厂）</td><td>棋子、字符串常量池</td></tr>
+              <tr><td><b>代理 Proxy</b>：为对象提供代理以控制访问（远程/虚拟/保护代理）</td><td class="freq">高频 · 延迟加载、权限、AOP</td></tr>
+              <tr>
+                <td class="cat" rowspan="11">行为型<br><small>11 种<br>职责分配与通信</small></td>
+                <td><b>责任链 Chain of Responsibility</b>：使多个对象都有机会处理请求，沿链传递</td><td class="freq">高频 · 审批流、过滤器</td></tr>
+              <tr><td><b>命令 Command</b>：将请求封装为对象，支持排队、撤销、日志</td><td>菜单命令、撤销重做</td></tr>
+              <tr><td><b>解释器 Interpreter</b>：定义语言文法并解释其句子</td><td>规则 / 表达式解析</td></tr>
+              <tr><td><b>迭代器 Iterator</b>：顺序访问聚合对象元素而不暴露内部结构</td><td>集合遍历</td></tr>
+              <tr><td><b>中介者 Mediator</b>：用一个中介对象封装一系列对象交互，解耦同事对象</td><td>聊天室、MVC 控制器</td></tr>
+              <tr><td><b>备忘录 Memento</b>：在不破坏封装下保存/恢复对象状态</td><td>存档、撤销</td></tr>
+              <tr><td><b>观察者 Observer</b>：一对多依赖，状态变化自动通知更新（发布-订阅）</td><td class="freq">高频 · 事件、MVC、消息通知</td></tr>
+              <tr><td><b>状态 State</b>：允许对象在内部状态改变时改变行为</td><td class="freq">高频 · 状态机、订单状态</td></tr>
+              <tr><td><b>策略 Strategy</b>：定义一系列可互换的算法并封装，使算法可独立变化</td><td class="freq">高频 · 多种支付/计价方式</td></tr>
+              <tr><td><b>模板方法 Template Method</b>：父类定义算法骨架，子类重写具体步骤</td><td class="freq">高频 · 固定流程、钩子方法</td></tr>
+              <tr><td><b>访问者 Visitor</b>：在不改变元素类的前提下定义新操作</td><td>双重分派、编译器语法树</td></tr>
+            </tbody>
+          </table></div>
+          <div class="kp-formula" style="margin-top:14px;">
+            记忆要点：<b>"创建对象"</b>想工厂/建造者；<b>"接口不兼容"</b>用适配器；<b>"动态加功能"</b>用装饰器；<b>"控制访问"</b>用代理；<b>"状态/算法可切换"</b>用状态/策略；<b>"通知联动"</b>用观察者；<b>"固定骨架"</b>用模板方法；<b>"逐级审批"</b>用责任链。
+          </div>
+        </div>
+
+        <details class="lecture">
+          <summary>考点精讲：给场景能识别模式（上午 + 下午都考）</summary>
+          <div class="lecture-body">
+            <h5>1. 做题方法：抓"关键词"反推模式</h5>
+            <table class="mini-tbl m2">
+              <tr><th>题干关键词 / 场景</th><th>对应模式</th></tr>
+              <tr><td>只有一个实例、全局唯一访问点</td><td>单例 Singleton</td></tr>
+              <tr><td>让子类决定 new 哪一个；创建对象延迟</td><td>工厂方法</td></tr>
+              <tr><td>创建一系列相关产品族（换肤、跨平台）</td><td>抽象工厂</td></tr>
+              <tr><td>分步构建复杂对象、链式 set</td><td>建造者 Builder</td></tr>
+              <tr><td>复制/克隆已有对象</td><td>原型 Prototype</td></tr>
+              <tr><td>复用旧类、接口对不上、转换包装</td><td>适配器 Adapter</td></tr>
+              <tr><td>动态增加功能、Java I/O 流嵌套</td><td>装饰器 Decorator</td></tr>
+              <tr><td>多维度独立变化、抽象与实现分离</td><td>桥接 Bridge</td></tr>
+              <tr><td>树形结构、统一对待容器和叶子</td><td>组合 Composite</td></tr>
+              <tr><td>提供统一高层接口、一键操作</td><td>外观 Facade</td></tr>
+              <tr><td>控制访问、延迟加载、AOP、远程</td><td>代理 Proxy</td></tr>
+              <tr><td>一对多、状态变自动通知、发布订阅</td><td>观察者 Observer</td></tr>
+              <tr><td>算法可互相替换、多种支付/计价</td><td>策略 Strategy</td></tr>
+              <tr><td>状态改变行为、订单状态机</td><td>状态 State</td></tr>
+              <tr><td>父类定流程骨架、子类实现具体步骤</td><td>模板方法 Template Method</td></tr>
+              <tr><td>请求沿处理链逐级传递、审批/过滤</td><td>责任链 Chain of Responsibility</td></tr>
+            </table>
+            <h5>2. 易混模式辨析</h5>
+            <ul>
+              <li><b>装饰器 vs 代理</b>：装饰器强调"动态增加职责"（调用方主动一层层包）；代理强调"控制访问"（代理对象对真实对象做拦截，调用方不感知）。</li>
+              <li><b>策略 vs 状态</b>：策略由客户端选择一次性算法；状态由对象内部状态自动驱动行为切换。</li>
+              <li><b>工厂方法 vs 抽象工厂</b>：前者生产"一个产品"，后者生产"一族相关产品"。</li>
+              <li><b>适配器 vs 外观</b>：适配器转换接口解决"不兼容"，外观只是简化接口、子系统原本就兼容。</li>
+            </ul>
+            <h5>3. 下午代码题应对</h5>
+            <p>试题五/六给出 Java/C++ 代码骨架和类图，先据类图判断是哪种模式，再填空：通常考接口/抽象类的实现、方法调用、组合关系（持有的成员对象）、以及模式中特有的回调方法（如观察者的 update、策略的抽象算法方法）。</p>
+          </div>
+        </details>
+
+        <div class="quiz-zone" id="zt-09">
+          <div class="quiz-zone-head">
+            <span class="qz-title">真题精练 · 场景识别题（下午代码题同源）</span>
+            <a class="btn-online" href="https://ruankaodaren.com/exam/#/" target="_blank" rel="noopener">在线刷本章真题 ↗</a>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">1</span>在 Java 的 I/O 体系中，通过 new BufferedInputStream(new FileInputStream(...)) 为一个文件输入流动态地增加缓冲功能，这一设计采用的模式是（ ）。<span class="qtag">装饰器</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> 适配器模式</div><div class="opt"><b>B.</b> 装饰器模式</div><div class="opt"><b>C.</b> 代理模式</div><div class="opt"><b>D.</b> 外观模式</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：B</span>（装饰器）。<br>在不改变原对象、不增加大量子类的前提下，用一个对象"包裹"另一个对象并<b>动态增加职责（缓冲）</b>，是装饰器的典型应用；Java I/O 流层层嵌套是教科书案例。</div></details>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">2</span>某系统中，一个数据对象的状态发生改变时，需要自动通知所有已注册的显示界面并刷新它们，该需求最适合采用（ ）。<span class="qtag">观察者</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> 观察者模式</div><div class="opt"><b>B.</b> 单例模式</div><div class="opt"><b>C.</b> 适配器模式</div><div class="opt"><b>D.</b> 工厂方法模式</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：A</span>（观察者）。<br>目标（Subject）维护观察者列表，状态变化时遍历调用其 update 方法，实现<b>一对多自动通知</b>，即发布-订阅。</div></details>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">3</span>某电商系统支持满减、折扣、返现等多种促销算法，且这些算法可以在运行时相互替换、独立于客户端变化，最适合采用（ ）。<span class="qtag">策略</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> 模板方法模式</div><div class="opt"><b>B.</b> 状态模式</div><div class="opt"><b>C.</b> 策略模式</div><div class="opt"><b>D.</b> 组合模式</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：C</span>（策略）。<br>把一族可互换的算法各自封装为策略类、对外统一接口，客户端可运行时切换，是策略模式；模板方法是固定骨架，状态模式是内部状态驱动。</div></details>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">4</span>某系统已有一个类提供了所需功能，但其接口与新系统期望的接口不一致，为复用该已有类而不修改其代码，应采用（ ）。<span class="qtag">适配器</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> 适配器模式</div><div class="opt"><b>B.</b> 装饰器模式</div><div class="opt"><b>C.</b> 原型模式</div><div class="opt"><b>D.</b> 享元模式</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：A</span>（适配器）。<br>适配器实现目标接口、内部持有/继承被适配者，把对目标接口的调用转换为对已有类接口的调用，解决<b>接口不兼容</b>，从而复用旧类。</div></details>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 模块10 信息安全与法律法规 -->
+    <div class="topic-card">
+      <div class="topic-head">
+        <span class="topic-no">10</span>
+        <h3>信息安全与法律法规</h3>
+        <div class="topic-meta"><span class="meta-pill">3–4 题</span><span class="meta-pill">约 5%</span></div>
+      </div>
+      <div class="topic-body">
+        <div class="kp-group">
+          <h4>信息安全基础与加密</h4>
+          <div class="kp-list">
+            <div class="kp hot">安全五要素：保密性、完整性、可用性、可控性、不可抵赖性</div>
+            <div class="kp hot">对称加密：DES、3DES、AES、IDEA（密钥相同、速度快、密钥分发难）</div>
+            <div class="kp hot">非对称加密：RSA（公钥加密/私钥解密、可数字签名）、密钥对</div>
+            <div class="kp hot">摘要算法：MD5（128 位）、SHA；数字签名（防抵赖/篡改）、数字证书与 PKI/CA</div>
+          </div>
+        </div>
+        <div class="kp-group">
+          <h4>网络安全与攻击</h4>
+          <div class="kp-list">
+            <div class="kp">防火墙（包过滤/应用网关）、入侵检测 IDS、VPN、SSL/TLS 与 HTTPS</div>
+            <div class="kp hot">常见攻击：DDoS、SQL 注入、XSS 跨站脚本、木马、蠕虫、病毒、钓鱼</div>
+          </div>
+        </div>
+        <div class="kp-group">
+          <h4>知识产权与标准化</h4>
+          <div class="kp-list">
+            <div class="kp hot">著作权（自动产生、保护期作者终生及死后 50 年）、软件著作权归属（职务作品）</div>
+            <div class="kp hot">专利权（先申请原则、需申请审查）、商标权（注册在先）、商业秘密</div>
+            <div class="kp">《计算机软件保护条例》、标准化层次：国际标准 ISO、国家标准 GB、行业标准、企业标准；标准编号含义</div>
+          </div>
+        </div>
+
+        <details class="lecture">
+          <summary>考点精讲：加密体系、数字签名与知识产权</summary>
+          <div class="lecture-body">
+            <h5>1. 对称加密 vs 非对称加密</h5>
+            <table class="mini-tbl m3">
+              <tr><th>类别</th><th>代表算法</th><th>特点</th></tr>
+              <tr><td>对称（私钥）</td><td>DES、3DES、AES、IDEA、RC</td><td>加密解密同密钥、速度快、适合大量数据，但密钥分发与管理困难</td></tr>
+              <tr><td>非对称（公钥）</td><td>RSA、ECC、DSA</td><td>公钥/私钥成对，公钥加密私钥解密，速度慢，常用于密钥交换与数字签名</td></tr>
+              <tr><td>摘要（散列）</td><td>MD5（128 位）、SHA-1（160 位）、SHA-256</td><td>不可逆、定长，用于完整性校验，不是加密</td></tr>
+            </table>
+            <div class="note"><b>混合加密</b>：用非对称算法安全地协商出一个对称会话密钥，再用对称算法加密大量数据（兼顾安全与速度）。</div>
+            <h5>2. 数字签名与数字证书</h5>
+            <ul>
+              <li><b>数字签名</b>：发送方用<b>自己的私钥</b>对摘要加密，接收方用发送方<b>公钥</b>验证；可防<b>抵赖、防篡改、验证身份</b>，但不保证机密性。</li>
+              <li>数字证书由 CA（证书权威机构）签发，用 CA 私钥绑定"公钥—身份"，PKI 是其基础设施。</li>
+            </ul>
+            <h5>3. 常见攻击与防护</h5>
+            <ul>
+              <li>SQL 注入、XSS 跨站脚本（输入未过滤）；DDoS（耗尽资源）；钓鱼（仿冒身份）；木马（伪装）、蠕虫（自我复制传播）、病毒（寄生宿主）。</li>
+              <li>防火墙隔离网络、IDS 只检测告警、IPS 可阻断；HTTPS = HTTP over SSL/TLS。</li>
+            </ul>
+            <h5>4. 知识产权（高频）</h5>
+            <ul>
+              <li><b>软件著作权自作品完成之日起自动产生</b>，无需登记；公民作品保护期为作者终生及死后 50 年，单位作品为发表后 50 年。</li>
+              <li><b>职务作品</b>：利用单位物质技术条件或属于本职工作的软件，著作权由<b>单位</b>享有。</li>
+              <li><b>专利权</b>采用先申请原则（须申请审查）；<b>商标权</b>以注册在先为准；商业秘密靠保密措施保护。</li>
+            </ul>
+            <h5>5. 标准化层次</h5>
+            <p>国际标准（ISO、IEC）、国家标准（GB 强制、GB/T 推荐）、行业标准、地方标准、企业标准。</p>
+          </div>
+        </details>
+
+        <div class="quiz-zone" id="zt-10">
+          <div class="quiz-zone-head">
+            <span class="qz-title">真题精练 · 典型高频题（按历年题型整理）</span>
+            <a class="btn-online" href="https://ruankaodaren.com/exam/#/" target="_blank" rel="noopener">在线刷本章真题 ↗</a>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">1</span>下列加密算法中，属于非对称（公钥）加密算法的是（ ）。<span class="qtag">加密</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> DES</div><div class="opt"><b>B.</b> AES</div><div class="opt"><b>C.</b> RSA</div><div class="opt"><b>D.</b> IDEA</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：C</span>（RSA）。<br>DES、AES、IDEA 都是对称加密算法，加解密共用同一密钥；<b>RSA 是典型的公钥（非对称）算法</b>，公钥私钥成对。</div></details>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">2</span>实现数字签名时，发送方对消息摘要进行加密所使用的密钥是（ ）。<span class="qtag">数字签名</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> 发送方的私钥</div><div class="opt"><b>B.</b> 发送方的公钥</div><div class="opt"><b>C.</b> 接收方的私钥</div><div class="opt"><b>D.</b> 接收方的公钥</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：A</span>（发送方私钥）。<br>数字签名用<b>发送方私钥</b>加密摘要（只有本人持有），接收方用发送方公钥验证，从而实现身份认证与不可抵赖。</div></details>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">3</span>某程序员为完成单位工作任务、利用单位物质技术条件开发的软件，其软件著作权由（ ）享有。<span class="qtag">知识产权</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> 程序员本人</div><div class="opt"><b>B.</b> 该单位</div><div class="opt"><b>C.</b> 程序员与单位共同</div><div class="opt"><b>D.</b> 国家</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：B</span>（该单位）。<br>属于职务作品：为完成本职工作或利用单位物质技术条件开发的软件，其著作权由<b>单位</b>享有，开发者可保留署名权。</div></details>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 模块11 多媒体 -->
+    <div class="topic-card">
+      <div class="topic-head">
+        <span class="topic-no">11</span>
+        <h3>多媒体基础</h3>
+        <div class="topic-meta"><span class="meta-pill">2–3 题</span><span class="meta-pill">约 3%</span></div>
+      </div>
+      <div class="topic-body">
+        <div class="kp-group">
+          <h4>音频、图像与计算</h4>
+          <div class="kp-list">
+            <div class="kp hot">声音三要素；音频文件大小 = 采样频率 × 量化位数 × 声道数 × 时间 / 8</div>
+            <div class="kp hot">图像容量 = 水平像素 × 垂直像素 × 颜色深度 / 8；分辨率、像素深度</div>
+            <div class="kp">彩色空间：RGB（加色/显示）、CMYK（减色/印刷）、YUV、HSV</div>
+            <div class="kp">常见格式与压缩标准：JPEG（静态图像）、MPEG、H.264（视频）、MP3/WAV/MIDI（音频）</div>
+            <div class="kp">数据压缩分类：无损压缩（熵编码、霍夫曼）与有损压缩；多媒体特性</div>
+          </div>
+        </div>
+
+        <details class="lecture">
+          <summary>考点精讲：音频/图像容量计算与压缩标准</summary>
+          <div class="lecture-body">
+            <h5>1. 音频文件大小（字节）</h5>
+            <div class="note">容量 = <b>采样频率（Hz）× 量化位数（bit）× 声道数 × 时间（秒） ÷ 8</b>。</div>
+            <p>如 44.1kHz、16 位、立体声（2 声道）：每秒 = 44100×16×2÷8 = 176400 字节 ≈ 172KB。</p>
+            <h5>2. 数字图像容量</h5>
+            <div class="note">容量 = <b>水平像素 × 垂直像素 × 颜色深度（bit）÷ 8</b>。</div>
+            <ul>
+              <li>颜色数与位数关系：n 位颜色深度可表示 2<sup>n</sup> 种颜色。如 256 色 = 8 位；24 位真彩色可显示 2<sup>24</sup> 色。</li>
+              <li>640×480 的 256 色图像：640×480×8÷8 = 307200 字节。</li>
+            </ul>
+            <h5>3. 彩色空间</h5>
+            <ul>
+              <li><b>RGB</b>：加色模型，用于显示器（发光）；<b>CMYK</b>：减色模型，用于印刷（反光）；<b>YUV</b>：电视/视频，亮度与色度分离；<b>HSV</b>：色相、饱和度、明度，便于调色。</li>
+            </ul>
+            <h5>4. 压缩分类与标准</h5>
+            <ul>
+              <li><b>无损压缩</b>：解压后数据完全一致，如霍夫曼编码、算术编码、LZW（熵编码）、PNG、FLAC。</li>
+              <li><b>有损压缩</b>：以牺牲部分信息换取高压缩比，如 JPEG（静态图像）、MPEG/H.264（视频）、MP3（音频）。</li>
+            </ul>
+          </div>
+        </details>
+
+        <div class="quiz-zone" id="zt-11">
+          <div class="quiz-zone-head">
+            <span class="qz-title">真题精练 · 典型高频题（容量计算为主）</span>
+            <a class="btn-online" href="https://ruankaodaren.com/exam/#/" target="_blank" rel="noopener">在线刷本章真题 ↗</a>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">1</span>某音频采样频率为 44.1kHz、量化位数为 16 位、采用立体声（2 声道），则录制 1 秒的未经压缩音频数据量约为（ ）。<span class="qtag">音频容量</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> 88200 字节</div><div class="opt"><b>B.</b> 176400 字节</div><div class="opt"><b>C.</b> 1411200 字节</div><div class="opt"><b>D.</b> 705600 字节</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：B</span>（176400 字节）。<br>数据量 = 44100×16×2×1÷8 = 44100×4 = <span class="key">176400 字节</span>（88200 是单声道结果）。</div></details>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">2</span>一幅分辨率为 640×480、颜色数为 256 色的未经压缩位图，所占存储空间约为（ ）。<span class="qtag">图像容量</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> 153600 字节</div><div class="opt"><b>B.</b> 307200 字节</div><div class="opt"><b>C.</b> 614400 字节</div><div class="opt"><b>D.</b> 1228800 字节</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：B</span>（307200 字节）。<br>256 色 = 2<sup>8</sup>，每像素 8 位 = 1 字节；容量 = 640×480×1 = <span class="key">307200 字节</span>。</div></details>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">3</span>下列数据压缩方法中，属于无损压缩的是（ ）。<span class="qtag">压缩分类</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> 霍夫曼编码</div><div class="opt"><b>B.</b> JPEG 压缩</div><div class="opt"><b>C.</b> MPEG 压缩</div><div class="opt"><b>D.</b> MP3 编码</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：A</span>（霍夫曼编码）。<br>霍夫曼编码是基于字符出现频率的<b>熵编码，属于无损压缩</b>；JPEG、MPEG、MP3 均为有损压缩。</div></details>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 模块12 专业英语 -->
+    <div class="topic-card">
+      <div class="topic-head">
+        <span class="topic-no">12</span>
+        <h3>计算机专业英语</h3>
+        <div class="topic-meta"><span class="meta-pill">5 题</span><span class="meta-pill">约 7%</span></div>
+      </div>
+      <div class="topic-body">
+        <div class="kp-group">
+          <h4>考查形式与备考</h4>
+          <div class="kp-list">
+            <div class="kp hot">一段计算机 / 软件工程相关英文短文，挖 5 个空，四选一填词</div>
+            <div class="kp">常考主题：软件生命周期、面向对象、设计模式、数据库、网络安全、云计算 / AI 等新技术</div>
+            <div class="kp">备考：积累专业术语与固定搭配，结合上下文语义与语法判断，无需专门精读</div>
+          </div>
+        </div>
+
+        <details class="lecture">
+          <summary>考点精讲：高频术语与完形填空解题技巧</summary>
+          <div class="lecture-body">
+            <h5>1. 题型与得分策略</h5>
+            <p>一篇 200–300 词的计算机/软件工程英文短文，挖 5 空、每空四选一，共 5 分。<b>核心是考"专业词汇 + 上下文逻辑"，不是考语法难题</b>。</p>
+            <h5>2. 解题四步</h5>
+            <ul>
+              <li>先通读全文 1–2 句，确定<b>主题</b>（是 OO、测试、数据库还是网络）；</li>
+              <li>判断空格所需<b>词性</b>（名词/动词/形容词），先排除词性不符的；</li>
+              <li>抓<b>固定搭配与逻辑连接词</b>：however（转折）、therefore/thus（因果）、for example（举例）、in addition（递进）；</li>
+              <li>结合前后句的<b>术语呼应</b>（如前文反复出现 class/object，空处多半是 method/instance 等同类词）。</li>
+            </ul>
+            <h5>3. 高频主题词（务必认得）</h5>
+            <table class="mini-tbl m2">
+              <tr><th>主题</th><th>高频词</th></tr>
+              <tr><td>面向对象</td><td>encapsulation（封装）、inheritance（继承）、polymorphism（多态）、abstract（抽象）、instance（实例）、interface（接口）</td></tr>
+              <tr><td>设计模式</td><td>singleton（单例）、factory（工厂）、observer（观察者）、adapter（适配器）、decouple（解耦）、reusable（可复用）</td></tr>
+              <tr><td>软件过程</td><td>requirement（需求）、maintenance（维护）、debug（调试）、defect/bug（缺陷）、verify（验证）、validate（确认）</td></tr>
+              <tr><td>数据库</td><td>schema（模式）、transaction（事务）、attribute（属性）、redundancy（冗余）、normalization（规范化）</td></tr>
+              <tr><td>网络/安全</td><td>protocol（协议）、packet（分组）、encryption（加密）、authentication（认证）、firewall（防火墙）</td></tr>
+            </table>
+          </div>
+        </details>
+
+        <div class="quiz-zone" id="zt-12">
+          <div class="quiz-zone-head">
+            <span class="qz-title">真题精练 · 典型高频词汇题（按历年题型整理）</span>
+            <a class="btn-online" href="https://ruankaodaren.com/exam/#/" target="_blank" rel="noopener">在线刷本章真题 ↗</a>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">1</span>______ is the object-oriented feature that allows the same operation to behave differently on different objects (e.g., an overridden method bound at runtime).<span class="qtag">面向对象词汇</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> Encapsulation</div><div class="opt"><b>B.</b> Inheritance</div><div class="opt"><b>C.</b> Polymorphism</div><div class="opt"><b>D.</b> Compilation</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：C</span>（Polymorphism，多态）。<br>同一操作在不同对象上有不同行为、方法在运行时绑定，是<b>多态</b>的定义。封装是 Encapsulation，继承是 Inheritance，编译是 Compilation。</div></details>
+          </div>
+          <div class="quiz">
+            <div class="q-stem"><span class="qno">2</span>The ______ design pattern guarantees that a class has at most one instance and provides a global access point to it.<span class="qtag">设计模式词汇</span></div>
+            <div class="q-opts">
+              <div class="opt"><b>A.</b> Singleton</div><div class="opt"><b>B.</b> Factory</div><div class="opt"><b>C.</b> Observer</div><div class="opt"><b>D.</b> Adapter</div>
+            </div>
+            <details class="q-ans"><summary>查看答案与解析</summary><div class="q-ans-body"><span class="ans">答案：A</span>（Singleton，单例）。<br>"保证一个类至多一个实例并提供全局访问点"是<b>单例模式</b>的标准定义；Factory 工厂、Observer 观察者、Adapter 适配器均不符。</div></details>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 下午：案例分析 ===== -->
+<section class="block" id="afternoon">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-no">PART 03</span>
+      <h2>下午卷 · 案例分析考点</h2>
+      <p>共 6 道大题，<b>试题一至四为必答题</b>，<b>试题五（Java）与试题六（C++）二选一</b>，每题 15 分。题型高度固定，是最容易通过专项训练拿分的部分。建议先看问题、判断题型，再带着问题回材料找答案。</p>
+    </div>
+
+    <!-- 试题一 DFD -->
+    <div class="pm-card">
+      <div class="pm-head">
+        <span class="pm-qno">试题一</span>
+        <h3>结构化分析 · 数据流图（DFD）设计</h3>
+        <span class="score">15 分 · 必答</span>
+      </div>
+      <div class="pm-body">
+        <div class="pm-grid">
+          <div class="pm-block">
+            <h4>考查内容</h4>
+            <ul>
+              <li>DFD 四要素：<b>外部实体、加工（处理）、数据存储、数据流</b></li>
+              <li>分层结构：顶层图（上下文图）→ 0 层图 → 子图</li>
+              <li>补充缺失的<b>外部实体名</b>（谁和系统交互）</li>
+              <li>补充缺失的<b>数据存储名</b>（系统保存的文件/表）</li>
+              <li>补充缺失的<b>数据流</b>（名称、起点、终点），高频问</li>
+              <li>补充加工名；数据字典与加工逻辑（判定表 / 判定树 / 结构化语言）</li>
+            </ul>
+          </div>
+          <div class="pm-block skill">
+            <h4>答题技巧</h4>
+            <ul>
+              <li><b>父图与子图平衡</b>：父图某加工的输入/输出数据流，必须与子图一致——找遗漏数据流的第一利器</li>
+              <li><b>数据守恒</b>：每个加工至少一个输入、一个输出；有输入才能产生输出，不能"黑洞/奇迹/灰洞"</li>
+              <li>外部实体：题干中的<b>人物角色、外部系统</b>（客户、管理员、银行系统）</li>
+              <li>数据存储：含"<b>XX 文件 / 表 / 库 / 清单 / 档案</b>"字样</li>
+              <li>加工名：从说明中找"<b>动词 + 名词</b>"结构</li>
+              <li>逐句对照说明做标记，数据流名称必须能在说明中找到依据</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pm-callout"><b>关键：</b>数据流的起点或终点必有一端是加工；外部实体之间、数据存储之间不能直接连数据流。答题名称尽量使用题干原文，不要自己造词。</div>
+
+        <div class="case-demo" id="zt-pm1">
+          <h5>解题五步与典型填空示范（以"图书管理系统"为例）</h5>
+          <div class="cd-step"><span class="sno">1</span><b>圈外部实体</b>：题干中与系统交互的人或外部系统。读者（借书/还书）、管理员（录入图书）。</div>
+          <div class="cd-step"><span class="sno">2</span><b>圈数据存储</b>：含"文件/表/档案"的名词。如"图书目录文件""借书记录文件"。</div>
+          <div class="cd-step"><span class="sno">3</span><b>找加工</b>：每个"动词+名词"动作，如借书登记、还书处理、图书查询。</div>
+          <div class="cd-step"><span class="sno">4</span><b>用父子图平衡找缺失数据流</b>：父图中加工"借书登记"有输入"借书请求"，则 0 层图里必须有对应输入与输出。</div>
+          <div class="cd-step"><span class="sno">5</span><b>数据守恒校验</b>：每个加工至少一进一出；数据流不能实体连实体、存储连存储。</div>
+          <div class="cd-fill">典型填空：(1) 外部实体 = <b>读者、管理员</b>；(2) 数据存储 = <b>图书目录文件、借书记录文件</b>；(3) 缺失数据流：<b>借书登记 → 借书记录文件（保存借书信息）</b>；(4) 缺失数据流：<b>读者 → 借书登记（借书请求）</b>。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 试题二 数据库 -->
+    <div class="pm-card">
+      <div class="pm-head">
+        <span class="pm-qno">试题二</span>
+        <h3>数据库分析与设计（E-R 图 + 关系模式）</h3>
+        <span class="score">15 分 · 必答</span>
+      </div>
+      <div class="pm-body">
+        <div class="pm-grid">
+          <div class="pm-block">
+            <h4>考查内容</h4>
+            <ul>
+              <li>完善 E-R 图：补充<b>实体、联系、联系类型</b>（1:1、1:N、M:N）</li>
+              <li>补充实体或联系的<b>属性</b>（一空可填多个）</li>
+              <li>E-R 图<b>转换为关系模式</b>，补全关系模式中的空缺</li>
+              <li>判断各关系模式的<b>主键（主码）与外键（外码）</b></li>
+              <li>偶尔考 SQL 语句填空、关系规范化（属于第几范式）</li>
+            </ul>
+          </div>
+          <div class="pm-block skill">
+            <h4>答题技巧</h4>
+            <ul>
+              <li>从题干<b>名词找实体、动词找联系</b>，数量描述判断 1:1 / 1:N / M:N</li>
+              <li><b>M:N 联系必须单独建一个关系</b>：主键 = 两端实体主键组合，外键分别指向两端</li>
+              <li><b>1:N 联系</b>：可把"1"端主键放到"N"端关系中作外键，不必单独建表</li>
+              <li><b>1:1 联系</b>：外键可放在任意一端（选参与少的一端）</li>
+              <li>主键能唯一标识元组；外键引用其他关系的主键</li>
+              <li>属性严格从题干描述中提取，注意联系本身也可能带属性（如成绩、数量、时间）</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pm-callout"><b>关键：</b>先把实体和联系全部圈出，再判断基数。多对多联系转表、主键外键是每年必考的得分点，务必练熟。</div>
+
+        <div class="case-demo" id="zt-pm2">
+          <h5>解题四步与典型填空示范（以"学生选课系统"为例）</h5>
+          <div class="cd-step"><span class="sno">1</span><b>名词找实体</b>：学生、课程；<b>动词找联系</b>：选修；由"一个学生选多门课、一门课被多个学生选"判断为 <b>M:N</b>。</div>
+          <div class="cd-step"><span class="sno">2</span><b>补属性</b>：学生（学号、姓名、专业）、课程（课程号、课程名、学分）；联系"选修"自带属性（成绩）。</div>
+          <div class="cd-step"><span class="sno">3</span><b>转关系模式</b>：两个实体各一张表，M:N 联系"选修"单独建一张表。</div>
+          <div class="cd-step"><span class="sno">4</span><b>标主外键</b>：能唯一标识的作主码；联系表的两个码引用两端实体，作外码。</div>
+          <div class="cd-fill">
+            学生（<b>学号</b>，姓名，专业）&nbsp;主键：<b>学号</b><br>
+            课程（<b>课程号</b>，课程名，学分）&nbsp;主键：<b>课程号</b><br>
+            选修（<b>学号</b>，<b>课程号</b>，成绩）&nbsp;主键：<b>(学号, 课程号)</b>；外键：<b>学号</b>（参照学生）、<b>课程号</b>（参照课程）
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 试题三 UML -->
+    <div class="pm-card">
+      <div class="pm-head">
+        <span class="pm-qno">试题三</span>
+        <h3>面向对象分析与设计（UML 建模）</h3>
+        <span class="score">15 分 · 必答</span>
+      </div>
+      <div class="pm-body">
+        <div class="pm-grid">
+          <div class="pm-block">
+            <h4>考查内容</h4>
+            <ul>
+              <li><b>用例图</b>：参与者、用例，include 包含、extend 扩展、用例泛化</li>
+              <li><b>类图</b>（最常考）：补类名、属性、方法、类间关系、多重度</li>
+              <li><b>顺序图</b>：对象、生命线、同步/返回消息（消息对应类的方法）</li>
+              <li><b>状态图</b>：状态、事件、迁移、初始态与终止态</li>
+              <li>活动图：分支、分叉/汇合（并发）、泳道</li>
+            </ul>
+          </div>
+          <div class="pm-block skill">
+            <h4>答题技巧</h4>
+            <ul>
+              <li><b>include</b>：基用例<b>一定执行</b>被包含用例（提取公共步骤）；<b>extend</b>：满足条件才<b>可选</b>扩展，箭头指向基用例</li>
+              <li>类关系：题干"<b>由…组成 / 包含 / 拥有</b>"→聚合或组合；"<b>是一种 / 分为</b>"→泛化</li>
+              <li>聚合（可分离）空心菱形；组合（同生共死、不可分离）实心菱形，菱形在整体端</li>
+              <li>多重度对照题干数量：一个、多个（0..*）、至少一个（1..*）</li>
+              <li>顺序图中的消息名通常就是接收对象所属类的<b>方法名</b></li>
+              <li>类名/方法名到题干和类图中找原文，注意大小写一致</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pm-callout"><b>关键：</b>UML 题与试题五/六的设计模式代码题共用同一段说明和类图，理解类图结构（谁继承谁、谁持有谁）能同时帮助两题得分。</div>
+
+        <div class="case-demo" id="zt-pm3">
+          <h5>解题四步与典型填空示范（以"网上订单系统"为例）</h5>
+          <div class="cd-step"><span class="sno">1</span><b>先判图类型</b>：问"订单在待付款、待发货、已完成之间如何迁移"→<b>状态图</b>；问"下单过程中对象如何按时间传消息"→<b>顺序图</b>；问"系统有哪些参与者和功能"→<b>用例图</b>。</div>
+          <div class="cd-step"><span class="sno">2</span><b>判类间关系</b>：订单与订单明细同生共死（明细脱离订单无意义）→<b>组合（实心菱形）</b>；订单与客户是 N:1 引用→<b>关联</b>。</div>
+          <div class="cd-step"><span class="sno">3</span><b>标多重度</b>：一个客户可以有 0..* 张订单；一张订单必须属于 <b>1</b> 个客户；一张订单包含 <b>1..*</b> 个订单明细。</div>
+          <div class="cd-step"><span class="sno">4</span><b>补方法/属性</b>：抽象类名与抽象方法在 UML 中用<b>斜体</b>表示；接口方法由实现类实现；可见性 + 公有、− 私有、# 保护。</div>
+          <div class="cd-fill">典型填空：(1) 图类型 = <b>状态图</b>；(2) 订单—订单明细关系 = <b>组合（实心菱形）</b>；(3) 订单端到明细的多重度 = <b>1..*</b>；(4) 定义公共接口的抽象方法 calc() 用<b>斜体</b>，由各子类实现。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 试题四 算法 -->
+    <div class="pm-card">
+      <div class="pm-head">
+        <span class="pm-qno">试题四</span>
+        <h3>算法设计与分析（代码 / 流程图填空）</h3>
+        <span class="score">15 分 · 必答 · 难度最高</span>
+      </div>
+      <div class="pm-body">
+        <div class="pm-grid">
+          <div class="pm-block">
+            <h4>考查内容</h4>
+            <ul>
+              <li>给出问题描述与算法代码（C 风格）或流程图，填 <b>3–5 个空</b></li>
+              <li>问算法采用的<b>设计策略</b>、基本思想</li>
+              <li>问<b>时间复杂度</b>（有时含空间复杂度）、结果或正确性</li>
+              <li><b>动态规划</b>：0-1/完全背包、最长公共子序列 LCS、最长递增子序列、编辑距离、矩阵连乘、最大子段和</li>
+              <li><b>贪心</b>：活动安排、找零钱、哈夫曼、最小生成树、单源最短路径</li>
+              <li><b>分治</b>：归并/快速排序、二分查找、汉诺塔；<b>回溯</b>：n 皇后、子集/排列、迷宫、旅行商</li>
+            </ul>
+          </div>
+          <div class="pm-block skill">
+            <h4>答题技巧</h4>
+            <ul>
+              <li>先判策略：有<b>重叠子问题 + 状态转移表</b>→动态规划；<b>每步取当前最优不回头</b>→贪心；<b>分解—递归—合并</b>→分治；<b>深度搜索+不满足回退</b>→回溯</li>
+              <li>动态规划四步：明确 <b>dp 状态含义 → 状态转移方程 → 初始化/边界 → 遍历顺序与最终答案</b></li>
+              <li>填空结合上下文：变量名、数组下标、循环边界、max/min 更新、递推式</li>
+              <li>注意循环起止范围、临界下标、与题干示例数据对照验证</li>
+              <li><b>即使写不全代码，也要写出策略名称、算法思想和复杂度</b>，可拿步骤分</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pm-callout"><b>策略：</b>本题是下午难点，不必死磕。背熟动态规划、贪心、回溯的经典框架与状态转移方程，先把能确定的空和"策略+复杂度"的问拿下，通常能得 8–11 分。</div>
+
+        <div class="case-demo" id="zt-pm4">
+          <h5>解题四步与典型填空示范（0-1 背包 · 动态规划）</h5>
+          <div class="cd-step"><span class="sno">1</span><b>明确输入输出</b>：n 件物品（重量 w[i]、价值 v[i]）、背包容量 W，求能装入的最大价值（每件至多一件）。</div>
+          <div class="cd-step"><span class="sno">2</span><b>定策略</b>：每种物品"选或不选"、有重叠子问题与最优子结构 → <b>动态规划</b>。</div>
+          <div class="cd-step"><span class="sno">3</span><b>定义状态</b>：dp[i][j] 表示前 i 件物品在容量 j 下的最大价值。</div>
+          <div class="cd-step"><span class="sno">4</span><b>写状态转移与复杂度</b>：按能否放下第 i 件分类讨论。</div>
+          <div class="code">for i = 1..n:
+  for j = 0..W:
+    if (j &lt; w[i])            dp[i][j] = dp[i-1][j];          // 放不下
+    else                      dp[i][j] = max( dp[i-1][j],                     // 不选
+                                   dp[i-1][j-w[i]] + v[i] );    // 选
+// 答案：dp[n][W]；时间复杂度 O(nW)，空间复杂度 O(nW)</div>
+          <div class="cd-fill">典型填空：(1) 算法策略 = <b>动态规划</b>；(2) 放不下时填 <b>dp[i-1][j]</b>；(3) 能放下时取 <b>max(dp[i-1][j], dp[i-1][j-w[i]]+v[i])</b>；(4) 时间复杂度 = <b>O(nW)</b>。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 试题五 Java -->
+    <div class="pm-card choice">
+      <div class="pm-head">
+        <span class="pm-qno">试题五</span>
+        <h3>面向对象程序设计 · Java（设计模式代码填空）</h3>
+        <span class="score">15 分 · 与试题六二选一</span>
+      </div>
+      <div class="pm-body">
+        <div class="pm-grid">
+          <div class="pm-block">
+            <h4>考查内容</h4>
+            <ul>
+              <li>结合试题三类图与设计模式的 <b>Java 代码填空</b></li>
+              <li>类与接口定义、继承、接口实现、方法重写、多态、对象创建</li>
+              <li>常考模式：单例、工厂方法/抽象工厂、策略、观察者、装饰器、组合、模板方法、状态、适配器、桥接</li>
+            </ul>
+          </div>
+          <div class="pm-block skill">
+            <h4>答题技巧</h4>
+            <ul>
+              <li><b>extends</b> 继承类、<b>implements</b> 实现接口；interface 方法默认 public abstract</li>
+              <li>多态典型句式：<b>父类型 / 接口 变量 = new 具体子类()</b>——"new 后面"是高频填空</li>
+              <li>方法重写签名一致；用 <b>super.方法()</b> 调用父类实现</li>
+              <li>先判断设计模式，再按"角色"填空：工厂填 new 具体产品；策略填具体策略对象；装饰器/组合中填父类型调用</li>
+              <li>类名、方法名对照类图原文，注意大小写与参数</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pm-callout"><b>选语言建议：</b>有 Java/面向对象基础优先选试题五。本题套路固定，熟记常用模式的 Java 结构和多态写法，配合类图即可拿到大部分分数。</div>
+
+        <div class="case-demo" id="zt-pm5">
+          <h5>解题四步与典型填空示范（策略模式 · Java）</h5>
+          <div class="cd-step"><span class="sno">1</span><b>据类图判模式</b>：一组可互换算法类实现同一接口、由上下文持有 → 策略模式。</div>
+          <div class="cd-step"><span class="sno">2</span><b>认角色</b>：Strategy 抽象策略（接口）、AddStrategy 具体策略、Context 上下文。</div>
+          <div class="cd-step"><span class="sno">3</span><b>填继承/实现</b>：具体类用 <b>implements</b> 实现接口；接口方法必须全部实现。</div>
+          <div class="cd-step"><span class="sno">4</span><b>填多态调用</b>：上下文面向接口声明成员，运行时调用其方法。</div>
+          <div class="code">interface Strategy {
+  int calc(int a, int b);
+}
+class AddStrategy implements Strategy {        // 填空(1)
+  public int calc(int a, int b) {               // 填空(2)
+      return a + b;
+  }
+}
+class Context {
+  private Strategy strategy;
+  public void setStrategy(Strategy s) { this.strategy = s; }   // 填空(3)
+  public int calc(int a, int b) {
+      return strategy.calc(a, b);               // 填空(4) 多态
+  }
+}</div>
+          <div class="cd-fill">填空要点：(1) <b>implements Strategy</b>；(2) <b>public int calc</b>；(3) 形参类型 <b>Strategy s</b>；(4) 调用 <b>strategy.calc(a,b)</b>。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 试题六 C++ -->
+    <div class="pm-card choice">
+      <div class="pm-head">
+        <span class="pm-qno">试题六</span>
+        <h3>面向对象程序设计 · C++（设计模式代码填空）</h3>
+        <span class="score">15 分 · 与试题五二选一</span>
+      </div>
+      <div class="pm-body">
+        <div class="pm-grid">
+          <div class="pm-block">
+            <h4>考查内容</h4>
+            <ul>
+              <li>与试题五等价的 <b>C++ 代码填空</b>，考查同样的设计模式与面向对象特性</li>
+              <li>类的继承、虚函数 / 纯虚函数、指针与多态、对象创建</li>
+            </ul>
+          </div>
+          <div class="pm-block skill">
+            <h4>答题技巧</h4>
+            <ul>
+              <li>虚函数用 <b>virtual</b> 声明；纯虚函数：<b>virtual 返回类型 方法(参数) = 0;</b></li>
+              <li>继承写法：<b>class 子类 : public 父类 { … };</b>（public 继承是高频空）</li>
+              <li>多态通过指针/引用：<b>父类* 指针 = new 子类();</b></li>
+              <li>指针用 <b>-&gt;</b> 调方法，栈对象用 <b>.</b>；基类析构函数常声明为 virtual</li>
+              <li>填空常考：virtual、"=0"、public 继承、new 子类名、类名与方法名</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pm-callout"><b>选语言建议：</b>熟悉指针和虚函数机制可选 C++。试题五、六考查的模式与逻辑完全一致，只需精研自己选定的那一种语言，另一种可直接不看。</div>
+
+        <div class="case-demo" id="zt-pm6">
+          <h5>解题四步与典型填空示范（策略模式 · C++）</h5>
+          <div class="cd-step"><span class="sno">1</span><b>据类图判模式</b>：与 Java 题同构，先判出策略模式。</div>
+          <div class="cd-step"><span class="sno">2</span><b>认角色</b>：抽象基类 Strategy、具体策略 AddStrategy、上下文 Context。</div>
+          <div class="cd-step"><span class="sno">3</span><b>填虚函数</b>：抽象基类用<b>纯虚函数</b> virtual … = 0；具体类用 <b>: public</b> 继承并重写。</div>
+          <div class="cd-step"><span class="sno">4</span><b>填指针多态</b>：上下文用基类指针指向具体策略，通过 <b>-&gt;</b> 调用。</div>
+          <div class="code">class Strategy {
+public:
+  virtual int calc(int a, int b) = 0;          // 填空(1) 纯虚函数
+  virtual ~Strategy() {}
+};
+class AddStrategy : public Strategy {          // 填空(2)
+public:
+  int calc(int a, int b) { return a + b; }
+};
+class Context {
+  Strategy* strategy;
+public:
+  void setStrategy(Strategy* s) { strategy = s; }       // 填空(3)
+  int calc(int a, int b) { return strategy-&gt;calc(a,b); } // 填空(4)
+};</div>
+          <div class="cd-fill">填空要点：(1) <b>virtual int calc(int a,int b) = 0</b>；(2) <b>: public Strategy</b>；(3) 形参 <b>Strategy* s</b>；(4) 指针调用 <b>strategy-&gt;calc(a,b)</b>。</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== 在线真题库 ===== -->
+<section class="block" id="bank">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-no">RESOURCE</span>
+      <h2>在线真题题库 · 延伸刷题</h2>
+      <p>本页每个考点已内置「考点精讲 + 典型真题精练」。若要按章节或整套年份刷更多真题，可前往下方在线题库（做题通常需要注册登录），建议配合使用。</p>
+    </div>
+    <div class="bank-grid single">
+      <a class="bank-card featured" href="https://ruankaodaren.com/exam/#/" target="_blank" rel="noopener">
+        <div class="bk-main">
+          <div class="bk-name">软考达人 · 软件设计师在线题库</div>
+          <div class="bk-tags"><span>章节练习</span><span>历年真题</span><span>模拟考试</span><span>答案解析</span></div>
+          <div class="bk-desc">覆盖软件设计师（中级）全部考点的章节练习、历年真题成套训练与模拟考试，题目配答案解析，电脑与手机浏览器均可直接打开，适合系统刷题与考前冲刺。</div>
+        </div>
+        <div class="bk-go">进入在线题库 ↗</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 备考策略 ===== -->
+<section class="block" id="strategy">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-no">PART 04</span>
+      <h2>备考策略与复习规划</h2>
+      <p>软件设计师整体难度中等、知识面广但深度有限，科班或有编程基础者一般 1–2 个月可通关。核心是"二八法则"抓大放小、以真题驱动复习。</p>
+    </div>
+
+    <div class="strat-grid">
+      <div class="strat-card">
+        <div class="ph">PHASE 01</div>
+        <h3>基础学习（4–6 周）</h3>
+        <ul>
+          <li>用视频 + 教程快速过一遍，<b>建立知识框架</b>，不纠结冷门细节</li>
+          <li>优先理解：组成原理、操作系统、数据结构、数据库、网络</li>
+          <li>每章配合少量练习题巩固，随手记笔记</li>
+          <li>有基础者可加速，重点补自己薄弱的模块</li>
+        </ul>
+      </div>
+      <div class="strat-card">
+        <div class="ph">PHASE 02</div>
+        <h3>真题强化（3–4 周）</h3>
+        <ul>
+          <li><b>上午按模块刷历年真题</b>，整理错题与高频考点</li>
+          <li><b>下午按题型专项突破</b>：DFD、E-R、UML、算法、设计模式，总结答题模板</li>
+          <li>背熟 23 种设计模式的意图、分类与典型场景</li>
+          <li>算法题掌握动态规划、贪心、回溯经典框架</li>
+        </ul>
+      </div>
+      <div class="strat-card">
+        <div class="ph">PHASE 03</div>
+        <h3>冲刺模拟（1–2 周）</h3>
+        <ul>
+          <li><b>整套限时模拟</b>，提前熟悉机考答题与画图操作</li>
+          <li>集中背记：公式、复杂度表、设计模式、易混淆概念</li>
+          <li>回顾错题本，查漏补缺，不碰偏题怪题</li>
+          <li>调整作息，保证考试时段状态</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="core-box">
+      <h3>优先攻克的五大核心模块</h3>
+      <p>这五块同时覆盖上午大量选择题与下午全部大题，拿下它们即可锁定及格线，再用零散时间补网络、安全、多媒体、英语等小分。</p>
+      <div class="core-tags">
+        <span class="core-tag"><b>数据结构与算法</b> · 树/图/排序/DP</span>
+        <span class="core-tag"><b>软件工程</b> · 模型/测试/项目管理</span>
+        <span class="core-tag"><b>面向对象与 UML</b> · 类图/关系</span>
+        <span class="core-tag"><b>设计模式</b> · 23 种模式</span>
+        <span class="core-tag"><b>数据库设计</b> · E-R/关系模式/SQL</span>
+      </div>
+    </div>
+
+    <div class="pm-callout" style="margin-top:24px;">
+      <b>考场时间分配：</b>上午 75 题 / 150 分钟，约 2 分钟一题，计算量大或没把握的先标记跳过，最后回头；专业英语可快速作答。下午 5 题 / 150 分钟，每题约 30 分钟，建议先做最有把握的数据库、UML、设计模式选答题，DFD 约 25–30 分钟，把算法难题放最后、先拿"策略 + 复杂度"的步骤分，留约 10 分钟检查名称与漏题。
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">软件设计师 · 考点总结</div>
+        <p>依据官方考试说明与历年真题整理，考点分值占比为历年大致统计，实际以当年考试为准。</p>
+      </div>
+      <div class="footer-links">
+        <a href="#structure">考试结构</a>
+        <a href="#morning">上午考点</a>
+        <a href="#afternoon">下午考点</a>
+        <a href="#strategy">备考策略</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// 移动端菜单
+const toggle=document.getElementById('navToggle');
+const links=document.getElementById('navLinks');
+toggle.addEventListener('click',()=>links.classList.toggle('open'));
+links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+</script>
+</body>
+</html>
